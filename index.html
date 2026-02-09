@@ -506,17 +506,26 @@
     }
 
     /* Phone mockup */
-    .phone-mockup {
-      position: relative;
-      z-index: 5;
-      width: 320px;      /* adjust to your image */
-      height: auto;
-      border: none;
-      background: transparent;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.25);
-      overflow: visible;
-    }
+.phone-mockup {
+  width: 320px;              /* adjust as needed */
+  height: auto;
 
+  /* bezel/frame */
+  background: #0b0b0b;
+  border: 10px solid #111;
+  border-radius: 48px;
+  padding: 14px;
+
+  /* tilt / angle */
+  transform: rotate(-10deg) skewY(1deg);
+  transform-origin: center;
+  will-change: transform;
+
+  /* shadow */
+  box-shadow: 0 40px 80px rgba(0,0,0,0.25);
+
+  overflow: visible;
+}
     .phone-mockup-image {
       width: 100%;
       height: auto;
