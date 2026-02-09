@@ -412,6 +412,14 @@
       gap: 12px;
       max-width: 480px;
     }
+    .honeypot {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
     .hero-input {
       flex: 1;
       padding: 16px 22px;
@@ -1275,7 +1283,7 @@
           </p>
 
           <div id="heroFormContainer">
-            <form class="hero-form hero-reveal hero-reveal-4" id="heroForm" onsubmit="return false;">
+            <form class="hero-form hero-reveal hero-reveal-4" id="heroForm">
               <input
                 type="email"
                 class="hero-input"
@@ -1284,6 +1292,10 @@
                 autocomplete="email"
                 required
               >
+              <div class="honeypot" aria-hidden="true">
+                <label for="heroHp">Leave this field blank</label>
+                <input type="text" id="heroHp" name="hp_field" tabindex="-1" autocomplete="off">
+              </div>
               <button type="submit" class="btn-primary" id="heroSubmit">
                 Join Waitlist
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
@@ -1565,8 +1577,12 @@
           Join hundreds of tattoo artists who are tired of spreadsheets. Get early access to inkLedger.
         </p>
         <div id="ctaFormContainer">
-          <form class="cta-form reveal reveal-delay-2" id="ctaForm" onsubmit="return false;">
+          <form class="cta-form reveal reveal-delay-2" id="ctaForm">
             <input type="email" class="hero-input" id="ctaEmail" placeholder="Enter your email" autocomplete="email" required>
+            <div class="honeypot" aria-hidden="true">
+              <label for="ctaHp">Leave this field blank</label>
+              <input type="text" id="ctaHp" name="hp_field" tabindex="-1" autocomplete="off">
+            </div>
             <button type="submit" class="btn-primary" id="ctaSubmit">
               Join
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
@@ -1666,30 +1682,64 @@
       });
 
       // Waitlist form handling (both hero and CTA)
-      function handleWaitlistSubmit(formId, emailId, containerId) {
+      function showWaitlistSuccess(container) {
+        container.innerHTML =
+          '<div class="hero-form-success">' +
+            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
+            '<span>You\'re on the list! We\'ll be in touch soon.</span>' +
+          '</div>';
+      }
+
+      function showWaitlistError(container) {
+        container.innerHTML =
+          '<div class="hero-form-success" style="border-color: rgba(220,38,38,0.2); color: #dc2626;">' +
+            '<span>Something went wrong. Please try again.</span>' +
+          '</div>';
+      }
+
+      function submitWaitlist(email, source, honeypot) {
+        return fetch('https://api.inkledger.app/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: source, hp: honeypot })
+        }).then(function(res) {
+          return res.json().catch(function() { return {}; }).then(function(data) {
+            if (!res.ok || !data.ok) {
+              throw new Error(data.error || 'Request failed');
+            }
+            return data;
+          });
+        });
+      }
+
+      function handleWaitlistSubmit(formId, emailId, containerId, source, hpId) {
         var form = document.getElementById(formId);
         var emailInput = document.getElementById(emailId);
+        var hpInput = document.getElementById(hpId);
         var container = document.getElementById(containerId);
 
         if (!form) return;
 
-        form.querySelector('button[type="submit"]').addEventListener('click', function() {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
           var email = emailInput.value.trim();
+          var honeypot = hpInput ? hpInput.value.trim() : '';
+          if (honeypot) {
+            showWaitlistSuccess(container);
+            return;
+          }
           if (!email) return;
           var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (!re.test(email)) return;
 
-          // Show success (in production, send to Supabase)
-          container.innerHTML =
-            '<div class="hero-form-success">' +
-              '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
-              '<span>You\'re on the list! We\'ll be in touch soon.</span>' +
-            '</div>';
+          submitWaitlist(email, source, honeypot)
+            .then(function() { showWaitlistSuccess(container); })
+            .catch(function() { showWaitlistError(container); });
         });
       }
 
-      handleWaitlistSubmit('heroForm', 'heroEmail', 'heroFormContainer');
-      handleWaitlistSubmit('ctaForm', 'ctaEmail', 'ctaFormContainer');
+      handleWaitlistSubmit('heroForm', 'heroEmail', 'heroFormContainer', 'hero', 'heroHp');
+      handleWaitlistSubmit('ctaForm', 'ctaEmail', 'ctaFormContainer', 'cta', 'ctaHp');
     })();
   </script>
 </body>

@@ -1,0 +1,15 @@
+name = "inkledger-api"
+main = "worker.js"
+compatibility_date = "2025-02-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "inkledger"
+database_id = "3944af86-7827-4307-8b0b-050774bf45ea"
+
+[[kv_namespaces]]
+binding = "RATE"
+id = "29a3a669a4f2440f99295d05b54acb8c"
+
+[vars]
+ALLOWED_ORIGINS = "https://inkledger.app,https://www.inkledger.app"
