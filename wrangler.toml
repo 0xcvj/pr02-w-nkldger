@@ -1,6 +1,7 @@
 name = "inkledger-api"
 main = "worker.js"
 compatibility_date = "2025-02-01"
+routes = ["api.inkledger.app/*"]
 
 [[d1_databases]]
 binding = "DB"
