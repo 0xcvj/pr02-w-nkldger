@@ -40,17 +40,17 @@
       --bg-surface: #edece8;
       --bg-surface-elevated: #e4e3df;
       --bg-surface-hover: #dddcd8;
-      --bg-accent-subtle: rgba(204, 51, 0, 0.06);
+      --bg-accent-subtle: rgba(30, 27, 75, 0.06);
 
       --text-primary: #1a1a1a;
       --text-secondary: #5a5a5a;
       --text-muted: #8a8a8a;
       --text-inverse: #f6f5f1;
 
-      --accent: #cc3300;
-      --accent-hover: #b83200;
-      --accent-glow: rgba(204, 51, 0, 0.28);
-      --accent-subtle: rgba(204, 51, 0, 0.08);
+      --accent: #1e1b4b;
+      --accent-hover: #2d2a5e;
+      --accent-glow: rgba(30, 27, 75, 0.3);
+      --accent-subtle: rgba(30, 27, 75, 0.08);
 
       --ink-red: #dc2626;
       --ink-green: #10b981;
@@ -59,7 +59,7 @@
       --ink-pink: #ec4899;
 
       --border: rgba(0,0,0,0.08);
-      --border-accent: rgba(204, 51, 0, 0.22);
+      --border-accent: rgba(30, 27, 75, 0.2);
 
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-smooth: cubic-bezier(0.45, 0, 0.15, 1);
@@ -306,8 +306,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 20% 40%, rgba(204, 51, 0, 0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 80% at 80% 60%, rgba(204, 51, 0, 0.03) 0%, transparent 70%);
+        radial-gradient(ellipse 80% 60% at 20% 40%, rgba(30, 27, 75, 0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 80% 60%, rgba(30, 27, 75, 0.03) 0%, transparent 70%);
     }
     .hero-bg::after {
       content: '';
@@ -329,7 +329,7 @@
     .hero-corner::before, .hero-corner::after {
       content: '';
       position: absolute;
-      background: rgba(204, 51, 0, 0.2);
+      background: rgba(30, 27, 75, 0.2);
     }
     .hero-corner::before { width: 20px; height: 1.5px; }
     .hero-corner::after { width: 1.5px; height: 20px; }
@@ -864,7 +864,7 @@
       right: 18px;
       font-family: var(--font-display);
       font-size: 42px;
-      color: rgba(204, 51, 0, 0.06);
+      color: rgba(30, 27, 75, 0.06);
       line-height: 1;
     }
     .step-icon {
@@ -956,7 +956,7 @@
       max-width: 900px;
       margin: 0 auto;
       padding: clamp(36px, 5vw, 64px);
-      background: linear-gradient(135deg, var(--accent) 0%, #7a1e00 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #312e6e 100%);
       border-radius: 28px;
       text-align: center;
       position: relative;
@@ -1536,8 +1536,8 @@
         <a href="#faq" class="nav-link" data-i18n="index.nav.faq">FAQ</a>
 
         <div class="nav-actions">
-          <button class="btn-ghost-nav" onclick="document.getElementById('heroEmail').focus()" data-i18n="index.nav.sign_in">See Demo</button>
-          <button class="btn-primary-nav" onclick="document.getElementById('heroEmail').focus()" data-i18n="index.nav.join_waitlist">Get Early Access</button>
+          <button class="btn-ghost-nav" onclick="document.getElementById('heroEmail').focus()" data-i18n="index.nav.sign_in">Sign In</button>
+          <button class="btn-primary-nav" onclick="document.getElementById('heroEmail').focus()" data-i18n="index.nav.join_waitlist">Start Free</button>
         </div>
       </div>
 
@@ -1560,15 +1560,17 @@
         <div class="hero-text">
           <div class="hero-badge hero-reveal hero-reveal-1">
             <span class="hero-badge-dot"></span>
-            <span data-i18n="index.hero.badge">For artists. Not accountants.</span>
+            <span data-i18n="index.hero.badge">Built for freelance tattoo artists</span>
           </div>
 
           <h1 class="hero-headline hero-reveal hero-reveal-2">
-            <span class="hero-headline-row" data-i18n="index.hero.headline_row1">KILL THE ADMIN CHAOS.</span>
-            <span class="hero-headline-row"><span class="hero-headline-accent" data-i18n="index.hero.headline_row2">KEEP THE INK. KEEP THE CASH.</span></span>
+            <span class="hero-headline-row" data-i18n="index.hero.headline_row1">Stop Guessing Tattoo Profit.</span>
+            <span class="hero-headline-row"><span class="hero-headline-accent" data-i18n="index.hero.headline_row2">Start Running It Like a Business.</span></span>
           </h1>
 
-          <p class="hero-sub hero-reveal hero-reveal-3" data-i18n="index.hero.sub">inkLedger is your studio’s anti‑chaos system: bookings, deposits, expenses, consent forms, and tax‑ready numbers — in one clean place.</p>
+          <p class="hero-sub hero-reveal hero-reveal-3" data-i18n="index.hero.sub">
+            InkLedger is the operating system for tattoo artists: deposits, bookings, expenses, consent forms, and tax-ready numbers in one place.
+          </p>
 
           <div id="heroFormContainer">
             <form class="hero-form hero-reveal hero-reveal-4" id="heroForm">
@@ -1591,7 +1593,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
               </button>
             </form>
-            <p class="hero-privacy hero-reveal hero-reveal-5" data-i18n="index.hero.privacy">No card. No chaos.</p>
+            <p class="hero-privacy hero-reveal hero-reveal-5" data-i18n="index.hero.privacy">No card required.</p>
           </div>
         </div>
 
@@ -1602,7 +1604,7 @@
             <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g opacity="0.15">
                 <pattern id="dots-l" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
-                  <text x="4" y="12" font-size="10" fill="#cc3300">+</text>
+                  <text x="4" y="12" font-size="10" fill="#1e1b4b">+</text>
                 </pattern>
                 <rect width="200" height="200" fill="url(#dots-l)"/>
               </g>
@@ -1612,7 +1614,7 @@
             <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g opacity="0.1">
                 <pattern id="dots-r" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-                  <circle cx="2" cy="2" r="1.5" fill="#cc3300"/>
+                  <circle cx="2" cy="2" r="1.5" fill="#1e1b4b"/>
                 </pattern>
                 <rect width="200" height="200" fill="url(#dots-r)"/>
               </g>
@@ -1628,7 +1630,7 @@
           </div>
           <div class="floating-badge floating-badge--tr badge-entrance badge-entrance-2">
             <span class="floating-badge-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#cc3300" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1e1b4b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </span>
             <span data-i18n="index.hero.badge_month">€2,340 This Month</span>
           </div>
@@ -1653,7 +1655,7 @@
     <!-- ========== TRUSTED BY ========== -->
     <section class="trust-section" aria-label="Trusted by artists" data-i18n="index.trust.aria" data-i18n-attr="aria-label">
       <div class="container">
-        <h2 class="trust-headline reveal" data-i18n="index.trust.title">BUILT FOR SERIOUS TATTOO ARTISTS.</h2>
+        <h2 class="trust-headline reveal" data-i18n="index.trust.title">TRUSTED BY TATTOO ARTISTS WORLDWIDE</h2>
         <p class="trust-sub reveal reveal-delay-1" data-i18n="index.trust.sub">Join the growing community</p>
         <div class="trust-logos reveal reveal-delay-2">
           <span class="trust-logo">INK STUDIO</span>
@@ -1671,8 +1673,10 @@
       <div class="container">
         <div class="story-card reveal">
           <div class="story-emoji">🖤</div>
-          <p class="story-text" data-i18n="index.story.text">inkLedger exists because tattoo artists shouldn’t have to wrestle spreadsheets to get paid. You became an artist to create — not to chase deposits, untangle calendars, and decode receipts. We handle the admin so your studio stays clean and your numbers stay sharp.</p>
-          <p class="story-author" data-i18n="index.story.author">Made in the Netherlands. Built for the hustle.</p>
+          <p class="story-text" data-i18n="index.story.text">
+            We built inkLedger because tattoo artists shouldn't need a business degree to do their craft. You became an artist to create — not to fight calendars and tax forms. inkLedger handles the boring stuff so you can get back to what matters: the ink.
+          </p>
+          <p class="story-author" data-i18n="index.story.author">Made with ❤️ in the Netherlands</p>
         </div>
       </div>
     </section>
@@ -1681,14 +1685,16 @@
     <section class="how-section" id="how-it-works" aria-label="How it works" data-i18n="index.how.aria" data-i18n-attr="aria-label">
       <div class="container">
         <p class="section-eyebrow reveal" data-i18n="index.how.eyebrow">How It Works</p>
-        <h2 class="section-title reveal reveal-delay-1" data-i18n="index.how.title">YOUR STUDIO, ON LOCK.</h2>
-        <p class="section-subtitle reveal reveal-delay-2" data-i18n="index.how.sub">From first inquiry to tax‑ready numbers — every step of your freelance tattoo business in one place.</p>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="index.how.title">YOUR STUDIO, SIMPLIFIED</h2>
+        <p class="section-subtitle reveal reveal-delay-2" data-i18n="index.how.sub">
+          From client inquiry to tax filing — every step of your freelance tattoo business in one place.
+        </p>
 
         <div class="steps-grid">
           <div class="step-card reveal reveal-delay-1">
             <span class="step-number">01</span>
-            <div class="step-icon" style="background: rgba(204,51,0,0.1);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#cc3300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <div class="step-icon" style="background: rgba(30,27,75,0.1);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1e1b4b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
             <h3 class="step-title" data-i18n="index.how.step1.title">SMART BOOKING</h3>
             <p class="step-desc" data-i18n="index.how.step1.desc">Clients book directly through your personalized page. Upload design references, pick a slot, pay a deposit — all automatic.</p>
@@ -1732,8 +1738,8 @@
 
           <div class="step-card reveal reveal-delay-6">
             <span class="step-number">06</span>
-            <div class="step-icon" style="background: rgba(204,51,0,0.1);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#cc3300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <div class="step-icon" style="background: rgba(30,27,75,0.1);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1e1b4b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
             </div>
             <h3 class="step-title" data-i18n="index.how.step6.title">TAX-READY BOOKKEEPING</h3>
             <p class="step-desc" data-i18n="index.how.step6.desc">Revenue tracking, expense logging, and quarterly overviews built for Dutch freelancers. Tax season? Already handled.</p>
@@ -1745,9 +1751,11 @@
     <!-- ========== FEATURES / AND MORE ========== -->
     <section class="features-section" id="features" aria-label="Features" data-i18n="index.features.aria" data-i18n-attr="aria-label">
       <div class="container">
-        <p class="section-eyebrow reveal" data-i18n="index.features.eyebrow">NO FLUFF</p>
-        <h2 class="section-title reveal reveal-delay-1" data-i18n="index.features.title">BUILT TO STAY CLEAN</h2>
-        <p class="section-subtitle reveal reveal-delay-2" data-i18n="index.features.sub">Everything you need. None of the busywork.</p>
+        <p class="section-eyebrow reveal" data-i18n="index.features.eyebrow">And More</p>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="index.features.title">BUILT FOR YOUR WORKFLOW</h2>
+        <p class="section-subtitle reveal reveal-delay-2" data-i18n="index.features.sub">
+          Every feature designed with freelance tattoo artists in mind.
+        </p>
 
         <div class="features-grid">
           <div class="feature-card reveal reveal-delay-1">
@@ -1784,8 +1792,10 @@
           <div class="improving-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
           </div>
-          <h2 class="improving-title" data-i18n="index.improving.title">WE LISTEN. WE SHIP.</h2>
-          <p class="improving-text" data-i18n="index.improving.text">inkLedger evolves with real studio feedback — not “roadmap theater.” We build what removes friction and protects your time. Tell us what’s broken. We’ll fix it.</p>
+          <h2 class="improving-title" data-i18n="index.improving.title">WE KEEP IMPROVING</h2>
+          <p class="improving-text" data-i18n="index.improving.text">
+            inkLedger is constantly evolving. New features, integrations, and refinements ship regularly based on what real tattoo artists need. Your feedback shapes the product.
+          </p>
         </div>
       </div>
     </section>
@@ -1854,8 +1864,10 @@
     <!-- ========== CTA ========== -->
     <section class="cta-section" aria-label="Call to action" data-i18n="index.cta.aria" data-i18n-attr="aria-label">
       <div class="container">
-        <h2 class="cta-title reveal" data-i18n="index.cta.title" data-i18n-html>READY TO KILL<br>THE CHAOS?</h2>
-        <p class="cta-sub reveal reveal-delay-1" data-i18n="index.cta.sub">Join tattoo artists who refuse spreadsheet hell. Get early access to inkLedger.</p>
+        <h2 class="cta-title reveal" data-i18n="index.cta.title" data-i18n-html>READY TO SIMPLIFY<br>YOUR STUDIO?</h2>
+        <p class="cta-sub reveal reveal-delay-1" data-i18n="index.cta.sub">
+          Join hundreds of tattoo artists who are tired of spreadsheets. Get early access to inkLedger.
+        </p>
         <div id="ctaFormContainer">
           <form class="cta-form reveal reveal-delay-2" id="ctaForm">
             <input type="email" class="hero-input" id="ctaEmail" placeholder="Enter your email" autocomplete="email" required data-i18n="index.cta.email_placeholder" data-i18n-attr="placeholder">
