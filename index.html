@@ -634,6 +634,80 @@
     }
 
     /* ========================================
+       PAIN / SOLUTION SECTION
+       ======================================== */
+    .pain-section {
+      padding: var(--space-section) 0;
+    }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: clamp(32px, 6vw, 96px);
+      align-items: start;
+    }
+    .pain-title {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      margin-bottom: var(--space-lg);
+      color: var(--text-primary);
+    }
+    .pain-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 14px;
+    }
+    .pain-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: var(--text-base);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .pain-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--ink-red);
+      margin-top: 9px;
+      flex: 0 0 10px;
+      box-shadow: 0 0 0 4px rgba(220,38,38,0.12);
+    }
+    .pain-cards {
+      display: grid;
+      gap: 16px;
+    }
+    .pain-card {
+      padding: clamp(20px, 3vw, 28px);
+      border-radius: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      transition: all 0.4s var(--ease-out);
+    }
+    .pain-card:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-accent);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.16);
+    }
+    .pain-card-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      letter-spacing: 0.02em;
+      margin-bottom: var(--space-xs);
+      color: var(--text-primary);
+    }
+    .pain-card-desc {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ========================================
        TRUSTED BY / LOGO STRIP
        ======================================== */
     .trust-section {
@@ -1023,6 +1097,11 @@
       margin: 0 auto;
       justify-content: center;
     }
+    .cta-note {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      margin-top: var(--space-md);
+    }
 
     /* ========================================
        FOOTER
@@ -1195,6 +1274,17 @@
       .floating-badge--tl { left: 0; top: 30px; }
       .floating-badge--tr { right: 0; top: 80px; }
       .floating-badge--bl { left: 10px; bottom: 50px; }
+
+      .pain-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .pain-list,
+      .pain-cards {
+        max-width: 420px;
+        margin: 0 auto;
+        text-align: left;
+      }
 
       .steps-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
       .features-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
@@ -1447,7 +1537,7 @@
 
         <div class="nav-actions">
           <button class="btn-ghost-nav" onclick="document.getElementById('heroEmail').focus()" data-i18n="index.nav.sign_in">Sign In</button>
-          <button class="btn-primary-nav" onclick="document.getElementById('heroEmail').focus()" data-i18n="index.nav.join_waitlist">Join Waitlist</button>
+          <button class="btn-primary-nav" onclick="document.getElementById('heroEmail').focus()" data-i18n="index.nav.join_waitlist">Start Free</button>
         </div>
       </div>
 
@@ -1474,12 +1564,12 @@
           </div>
 
           <h1 class="hero-headline hero-reveal hero-reveal-2">
-            <span class="hero-headline-row" data-i18n="index.hero.headline_row1">BOOK. INK.</span>
-            <span class="hero-headline-row"><span class="hero-headline-accent" data-i18n="index.hero.headline_row2">EARN.</span></span>
+            <span class="hero-headline-row" data-i18n="index.hero.headline_row1">Stop Guessing Tattoo Profit.</span>
+            <span class="hero-headline-row"><span class="hero-headline-accent" data-i18n="index.hero.headline_row2">Start Running It Like a Business.</span></span>
           </h1>
 
           <p class="hero-sub hero-reveal hero-reveal-3" data-i18n="index.hero.sub">
-            The all-in-one app for freelance tattoo artists. Manage bookings, track revenue, handle bookkeeping, and simplify your taxes — so you can focus on creating art.
+            InkLedger is the operating system for tattoo artists: deposits, bookings, expenses, consent forms, and tax-ready numbers in one place.
           </p>
 
           <div id="heroFormContainer">
@@ -1499,11 +1589,11 @@
                 <input type="text" id="heroHp" name="hp_field" tabindex="-1" autocomplete="off">
               </div>
               <button type="submit" class="btn-primary" id="heroSubmit" data-i18n="index.hero.submit">
-                Join Waitlist
+                Start Free
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
               </button>
             </form>
-            <p class="hero-privacy hero-reveal hero-reveal-5" data-i18n="index.hero.privacy">No spam. Unsubscribe anytime. We respect your privacy.</p>
+            <p class="hero-privacy hero-reveal hero-reveal-5" data-i18n="index.hero.privacy">No card required.</p>
           </div>
         </div>
 
@@ -1584,7 +1674,7 @@
         <div class="story-card reveal">
           <div class="story-emoji">🖤</div>
           <p class="story-text" data-i18n="index.story.text">
-            We built inkLedger because tattoo artists shouldn't need a business degree to run do their craft. You became an artist to create — not to fight calendars and tax forms. inkLedger handles the boring stuff so you can get back to what matters: the ink.
+            We built inkLedger because tattoo artists shouldn't need a business degree to do their craft. You became an artist to create — not to fight calendars and tax forms. inkLedger handles the boring stuff so you can get back to what matters: the ink.
           </p>
           <p class="story-author" data-i18n="index.story.author">Made with ❤️ in the Netherlands</p>
         </div>
