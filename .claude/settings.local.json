@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"c:/Users/Jace/Projects/pr02-w-nkldger\" diff nl/index.html)",
+      "Bash(git -C \"c:/Users/Jace/Projects/pr02-w-nkldger\" log --oneline --all -- index.html nl/index.html)",
+      "Bash(git -C \"c:/Users/Jace/Projects/pr02-w-nkldger\" show 8650526 --stat)",
+      "Bash(git -C \"c:/Users/Jace/Projects/pr02-w-nkldger\" show 2689fbf --stat)",
+      "Bash(git -C \"c:/Users/Jace/Projects/pr02-w-nkldger\" show e0dd5fd --stat)",
+      "Bash(git -C \"c:/Users/Jace/Projects/pr02-w-nkldger\" show 2689fbf -- index.html)",
+      "Bash(git -C \"c:/Users/Jace/Projects/pr02-w-nkldger\" show e0dd5fd -- index.html)"
+    ]
+  }
+}
