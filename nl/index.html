@@ -1,423 +1,384 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="inkLedger — Anti-chaos OS for tattoo artists. Bookings, deposits, consent forms, invoices, expenses, and tax-ready exports." data-i18n="index.meta.description" data-i18n-attr="content">
+  <meta name="description" content="inkLedger - The all-in-one booking and bookkeeping app for freelance tattoo artists. Simplify taxes, track revenue, manage clients." data-i18n="index.meta.description" data-i18n-attr="content">
   <meta name="keywords" content="tattoo booking app, freelance tattoo artist, ZZP tattoo, bookkeeping tattoo, inkLedger">
   <meta name="author" content="inkLedger">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://inkledger.app">
-
-  <meta property="og:title" content="inkLedger — Kill the chaos." data-i18n="index.meta.og_title" data-i18n-attr="content">
+  <meta property="og:title" content="inkLedger - Book. Ink. Earn." data-i18n="index.meta.og_title" data-i18n-attr="content">
   <meta property="og:description" content="The all-in-one booking and bookkeeping app built for freelance tattoo artists." data-i18n="index.meta.og_description" data-i18n-attr="content">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://inkledger.app">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="inkLedger — Kill the chaos." data-i18n="index.meta.twitter_title" data-i18n-attr="content">
-  <meta name="twitter:description" content="The all-in-one booking and bookkeeping app built for freelance tattoo artists." data-i18n="index.meta.twitter_description" data-i18n-attr="content">
-
-  <title data-i18n="index.meta.title">inkLedger — Kill admin chaos</title>
+  <meta name="twitter:title" content="inkLedger” Book. Ink. Earn." data-i18n="index.meta.twitter_title" data-i18n-attr="content">
+  <meta name="twitter:description" content="The all-in-one booking and bookkeeping app built for freelance tattoo artists and studios." data-i18n="index.meta.twitter_description" data-i18n-attr="content">
+  <title data-i18n="index.meta.title">inkLedger - Booking & Bookkeeping for Tattoo Artists</title>
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/icon.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 
   <style>
-    /* ========================================
-       CSS CUSTOM PROPERTIES
-       ======================================== */
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       CSS VARIABLES
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
     :root {
-      --font-display: 'Bebas Neue', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
-
-      --bg-primary: #f6f5f1;
-      --bg-surface: #edece8;
-      --bg-surface-elevated: #e4e3df;
-      --bg-surface-hover: #dddcd8;
-      --bg-accent-subtle: rgba(204, 51, 0, 0.06);
-
-      --text-primary: #1a1a1a;
-      --text-secondary: #5a5a5a;
-      --text-muted: #8a8a8a;
-      --text-inverse: #f6f5f1;
-
+      --off-white: #faf5f0;
+      --cream: #f5efe8;
+      --black: #0b0b0b;
+      --dark: #141414;
+      --dark-surface: #1c1c1c;
+      --gray: #6b6b6b;
+      --gray-light: #a0a0a0;
+      --gray-muted: #8a8a8a;
       --accent: #cc3300;
       --accent-hover: #b83200;
       --accent-glow: rgba(204, 51, 0, 0.28);
       --accent-subtle: rgba(204, 51, 0, 0.08);
-
-      --ink-red: #dc2626;
-      --ink-green: #10b981;
-      --ink-amber: #f59e0b;
-      --ink-cyan: #06b6d4;
-      --ink-pink: #ec4899;
-
       --border: rgba(0,0,0,0.08);
-      --border-accent: rgba(204, 51, 0, 0.22);
-
+      --border-dark: rgba(255,255,255,0.08);
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-smooth: cubic-bezier(0.45, 0, 0.15, 1);
       --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
-
-      --text-xs: clamp(11px, 0.75vw, 13px);
-      --text-sm: clamp(13px, 0.9vw, 15px);
-      --text-base: clamp(15px, 1.05vw, 17px);
-      --text-lg: clamp(18px, 1.3vw, 22px);
-      --text-xl: clamp(24px, 2vw, 32px);
-      --text-2xl: clamp(32px, 3vw, 48px);
-      --text-3xl: clamp(40px, 4.5vw, 72px);
-      --text-hero: clamp(52px, 7vw, 110px);
-      --text-display: clamp(64px, 9vw, 160px);
-
-      --space-xs: 4px;
-      --space-sm: 8px;
-      --space-md: 16px;
-      --space-lg: 24px;
-      --space-xl: 32px;
-      --space-2xl: 48px;
-      --space-3xl: 64px;
-      --space-4xl: 96px;
-      --space-5xl: 128px;
-      --space-section: clamp(80px, 10vw, 160px);
     }
 
-    /* ========================================
-       RESET & BASE
-       ======================================== */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { font-family: var(--font-body); background: var(--off-white); color: var(--black); overflow-x: hidden; line-height: 1.6; }
+    ::selection { background: var(--accent); color: #fff; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    .skip-link { position: absolute; top: -100%; left: 16px; background: var(--accent); color: #fff; padding: 12px 24px; border-radius: 0 0 8px 8px; z-index: 10000; font-weight: 600; transition: top 0.3s; }
+    .skip-link:focus { top: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    body {
-      font-family: var(--font-body);
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    /* ========================================
-       SKIP LINK (ACCESSIBILITY)
-       ======================================== */
-    .skip-link {
-      position: absolute;
-      top: -100%;
-      left: 16px;
-      background: var(--accent);
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 0 0 8px 8px;
-      z-index: 10000;
-      font-weight: 600;
-      transition: top 0.3s;
-    }
-    .skip-link:focus {
-      top: 0;
-    }
-
-    /* ========================================
-       CONTAINER
-       ======================================== */
-    .container {
-      width: 100%;
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 0 clamp(20px, 5vw, 80px);
-    }
-
-    /* ========================================
-       NAVIGATION
-       ======================================== */
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       NAVIGATION â€” Floating pill (Framer style)
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
     .nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 1000;
-      padding: 0 clamp(20px, 5vw, 80px);
-      transition: background 0.4s var(--ease-out), backdrop-filter 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
-      border-bottom: 1px solid transparent;
-    }
-    .nav.scrolled {
-      background: rgba(246, 245, 241, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom-color: var(--border);
-    }
-    .nav-inner {
-      max-width: 1440px;
-      margin: 0 auto;
+      background: rgba(11, 11, 11, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 100px;
+      padding: 8px 10px 8px 16px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      height: 72px;
+      gap: 24px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
     }
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-family: var(--font-display);
-      font-size: 28px;
-      letter-spacing: 0.04em;
-      color: var(--text-primary);
+      gap: 8px;
+      cursor: pointer;
+      flex-shrink: 0;
     }
     .nav-logo-icon {
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    .nav-logo-icon svg {
-      width: 100%;
-      height: 100%;
     }
     .nav-logo-icon img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
+    .nav-logo-icon svg {
+      width: 100%;
+      height: 100%;
+    }
     .nav-links {
       display: flex;
+      gap: 4px;
+      list-style: none;
       align-items: center;
-      gap: clamp(20px, 3vw, 40px);
     }
-    .nav-link {
-      font-size: var(--text-sm);
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      padding: 7px 14px;
+      border-radius: 100px;
+      transition: color 0.3s ease, background 0.3s ease;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      font-family: var(--font-body);
+      font-size: 13px;
       font-weight: 500;
-      color: var(--text-secondary);
-      letter-spacing: 0.02em;
-      transition: color 0.3s ease;
-      cursor: pointer;
-    }
-    .nav-link:hover {
-      color: var(--text-primary);
-    }
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .btn-ghost-nav {
-      padding: 10px 22px;
-      font-size: var(--text-sm);
-      font-weight: 600;
-      color: var(--text-secondary);
-      border: 1.5px solid var(--border);
-      border-radius: 50px;
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.4s var(--ease-out);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-family: var(--font-body);
-    }
-    .btn-ghost-nav:hover {
-      color: var(--text-primary);
-      border-color: var(--text-secondary);
-    }
-    .btn-primary-nav {
-      padding: 10px 24px;
-      font-size: var(--text-sm);
-      font-weight: 600;
       color: #fff;
-      background: var(--accent);
-      border: none;
-      border-radius: 50px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 7px 18px;
+      border-radius: 100px;
       cursor: pointer;
-      transition: all 0.4s var(--ease-out);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-family: var(--font-body);
+      transition: all 0.3s ease;
+      white-space: nowrap;
     }
-    .btn-primary-nav:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px var(--accent-glow);
-    }
-
-    /* Mobile nav toggle */
+    .nav-cta:hover { background: rgba(255,255,255,0.18); }
     .nav-toggle {
       display: none;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
+      cursor: pointer;
       background: none;
       border: none;
-      cursor: pointer;
-      padding: 8px;
-      z-index: 1001;
+      padding: 6px;
     }
     .nav-toggle span {
       display: block;
-      width: 24px;
+      width: 18px;
       height: 2px;
-      background: var(--text-primary);
+      background: #fff;
       border-radius: 2px;
-      transition: all 0.3s var(--ease-out);
+      transition: all 0.3s ease;
     }
-    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
     .nav-toggle.open span:nth-child(2) { opacity: 0; }
-    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
-    /* ========================================
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       SCROLL REVEAL
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    .reveal-d5 { transition-delay: 0.5s; }
+
+    /* Hero entrance animations */
+    .hero-anim {
+      opacity: 0;
+      transform: translateY(44px);
+      animation: heroIn 1s var(--ease-out) forwards;
+    }
+    .hero-anim-1 { animation-delay: 0.15s; }
+    .hero-anim-2 { animation-delay: 0.3s; }
+    .hero-anim-3 { animation-delay: 0.5s; }
+    .hero-anim-4 { animation-delay: 0.7s; }
+    .hero-anim-5 { animation-delay: 0.9s; }
+    @keyframes heroIn { to { opacity: 1; transform: translateY(0); } }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        HERO SECTION
-       ======================================== */
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
     .hero {
+      position: relative;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      position: relative;
+      padding: 130px 24px 40px;
       overflow: hidden;
-      padding-top: 72px;
+      background: var(--off-white);
     }
-
-    /* Tattoo-inspired crosshatch pattern background */
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .hero-bg::before {
+    .hero::before {
       content: '';
       position: absolute;
-      inset: 0;
+      top: -15%;
+      left: -15%;
+      width: 130%;
+      height: 70%;
       background:
-        radial-gradient(ellipse 80% 60% at 20% 40%, rgba(204, 51, 0, 0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 80% at 80% 60%, rgba(204, 51, 0, 0.03) 0%, transparent 70%);
+        radial-gradient(ellipse at 25% 50%, rgba(180, 155, 130, 0.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 35%, rgba(165, 145, 125, 0.18) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 65%, rgba(145, 125, 105, 0.12) 0%, transparent 60%);
+      animation: heroSmoke 22s ease-in-out infinite;
+      pointer-events: none;
     }
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0.04;
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0,0,0,0.15) 40px, rgba(0,0,0,0.15) 41px),
-        repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,0,0,0.15) 40px, rgba(0,0,0,0.15) 41px);
-    }
-
-    /* Decorative corner elements like Baselayer */
-    .hero-corner {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      z-index: 2;
-    }
-    .hero-corner::before, .hero-corner::after {
-      content: '';
-      position: absolute;
-      background: rgba(204, 51, 0, 0.2);
-    }
-    .hero-corner::before { width: 20px; height: 1.5px; }
-    .hero-corner::after { width: 1.5px; height: 20px; }
-    .hero-corner--tl { top: clamp(90px, 12vh, 140px); left: clamp(20px, 5vw, 80px); }
-    .hero-corner--tl::before { top: 0; left: 0; }
-    .hero-corner--tl::after { top: 0; left: 0; }
-    .hero-corner--tr { top: clamp(90px, 12vh, 140px); right: clamp(20px, 5vw, 80px); }
-    .hero-corner--tr::before { top: 0; right: 0; }
-    .hero-corner--tr::after { top: 0; right: 0; }
-    .hero-corner--bl { bottom: 40px; left: clamp(20px, 5vw, 80px); }
-    .hero-corner--bl::before { bottom: 0; left: 0; }
-    .hero-corner--bl::after { bottom: 0; left: 0; }
-    .hero-corner--br { bottom: 40px; right: clamp(20px, 5vw, 80px); }
-    .hero-corner--br::before { bottom: 0; right: 0; }
-    .hero-corner--br::after { bottom: 0; right: 0; }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      width: 100%;
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 0 clamp(20px, 5vw, 80px);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(40px, 5vw, 100px);
-      align-items: center;
-    }
-
-    .hero-text {
-      max-width: 620px;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 18px;
-      border-radius: 50px;
-      border: 1px solid var(--border-accent);
-      background: var(--accent-subtle);
-      margin-bottom: var(--space-lg);
-      font-size: var(--text-sm);
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-    }
-    .hero-badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.4); }
+    @keyframes heroSmoke {
+      0%, 100% { transform: translateX(0) scale(1); opacity: 0.7; }
+      50% { transform: translateX(-25px) scale(1.04); opacity: 1; }
     }
 
     .hero-headline {
       font-family: var(--font-display);
-      font-size: var(--text-hero);
-      line-height: 0.92;
-      letter-spacing: 0.02em;
-      color: var(--text-primary);
-      margin-bottom: var(--space-lg);
+      font-size: clamp(46px, 6.5vw, 96px);
+      font-weight: 400;
+      line-height: 1.05;
+      text-align: center;
+      color: var(--black);
+      max-width: 780px;
+      position: relative;
+      z-index: 2;
     }
-    .hero-headline-accent {
-      color: var(--accent);
+
+    /* Phone mockup area */
+    .hero-phone-area {
+      position: relative;
+      z-index: 2;
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .phone-mockup {
+      width: 280px;
+      aspect-ratio: 280 / 607;
+      background: #fff;
+      border-radius: 44px;
+      border: 8px solid #1a1a1a;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.15), 0 16px 32px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 5;
+      flex-shrink: 0;
+    }
+    .phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 26px;
+      background: #1a1a1a;
+      border-radius: 0 0 16px 16px;
+      z-index: 10;
+    }
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      background: #fff;
+      overflow: hidden;
+      border-radius: inherit;
       position: relative;
     }
-    .hero-headline-row {
+    .phone-screen-img {
       display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: inherit;
     }
 
+    /* Floating transaction cards */
+    .float-cards {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .fc {
+      position: absolute;
+      left: 50%;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      white-space: nowrap;
+      opacity: 0.72;
+      transform: translateX(calc(-50% + var(--center-x, 0px))) rotate(var(--center-rot, 0deg));
+      transition: transform 700ms var(--ease-out), opacity 520ms ease;
+      will-change: transform;
+    }
+    .float-cards.is-center .fc {
+      transform: translateX(calc(-50% + var(--center-x, 0px))) rotate(var(--center-rot, 0deg));
+      opacity: 0.72;
+    }
+    .float-cards.is-spread .fc {
+      transform: translateX(calc(-50% + var(--spread-x, 0px))) rotate(var(--spread-rot, var(--center-rot, 0deg)));
+      opacity: 0.9;
+    }
+    .fc-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .fc-name { font-weight: 600; font-size: 12px; }
+    .fc-status { font-size: 10px; color: var(--gray-light); }
+    .fc-right { text-align: right; }
+    .fc-amount { font-weight: 600; font-size: 12px; }
+    .fc-hash { font-size: 9px; color: var(--gray-light); font-family: monospace; }
+
+    .fc-1 { top: 8%; --center-x: -82px; --spread-x: -260px; --center-rot: -2deg; --spread-rot: -6deg; }
+    .fc-2 { top: 30%; --center-x: -96px; --spread-x: -272px; --center-rot: -3deg; --spread-rot: -7deg; }
+    .fc-3 { top: 55%; --center-x: -72px; --spread-x: -242px; --center-rot: -1deg; --spread-rot: -4deg; }
+    .fc-4 { top: 10%; --center-x: 82px; --spread-x: 260px; --center-rot: 2deg; --spread-rot: 6deg; }
+    .fc-5 { top: 34%; --center-x: 98px; --spread-x: 274px; --center-rot: 3deg; --spread-rot: 7deg; }
+    .fc-6 { top: 56%; --center-x: 74px; --spread-x: 244px; --center-rot: 1deg; --spread-rot: 4deg; }
+
+    /* Hero subtitle + CTA */
     .hero-sub {
-      font-size: var(--text-lg);
-      color: var(--text-secondary);
+      text-align: center;
+      max-width: 520px;
+      margin: 32px auto 0;
+      font-size: 16px;
       line-height: 1.65;
-      max-width: 480px;
-      margin-bottom: var(--space-2xl);
+      color: var(--gray);
+      position: relative;
+      z-index: 3;
     }
-
-    /* Waitlist form */
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-top: 28px;
+      position: relative;
+      z-index: 3;
+      width: 100%;
+    }
     .hero-form {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 12px;
-      max-width: 480px;
+      width: min(420px, 100%);
+    }
+    .hero-input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.82);
+      color: var(--black);
+      font-family: var(--font-body);
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hero-input::placeholder { color: var(--gray-muted); }
+    .hero-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
     }
     .honeypot {
       position: absolute;
@@ -427,1102 +388,1628 @@
       height: 1px;
       overflow: hidden;
     }
-    .hero-input {
-      flex: 1;
-      padding: 16px 22px;
-      font-family: var(--font-body);
-      font-size: 15px;
-      color: var(--text-primary);
-      background: var(--bg-surface);
-      border: 1.5px solid var(--border);
-      border-radius: 50px;
-      outline: none;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .hero-input::placeholder { color: var(--text-muted); }
-    .hero-input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-subtle);
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 16px 32px;
-      background: var(--accent);
-      color: #fff;
-      font-family: var(--font-body);
-      font-size: var(--text-sm);
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.4s var(--ease-out);
-      white-space: nowrap;
-    }
-    .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px var(--accent-glow);
-    }
-    .btn-primary svg {
-      transition: transform 0.3s var(--ease-out);
-    }
-    .btn-primary:hover svg {
-      transform: translateX(3px);
-    }
-    .hero-privacy {
-      font-size: var(--text-xs);
-      color: var(--text-muted);
-      margin-top: var(--space-md);
-    }
     .hero-form-success {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 16px 24px;
-      background: rgba(16, 185, 129, 0.08);
-      border: 1px solid rgba(16, 185, 129, 0.2);
-      border-radius: 16px;
-      color: var(--ink-green);
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(16,185,129,0.25);
+      background: rgba(16,185,129,0.08);
+      color: #0f8a63;
+      font-size: 14px;
       font-weight: 500;
-      max-width: 480px;
+      width: min(420px, 100%);
     }
-
-    /* Hero phone mockup - RIGHT side */
-    .hero-visual {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 640px;
-    }
-
-    /* Dot pattern behind phone like Baselayer */
-    .hero-dot-grid {
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      z-index: 0;
-    }
-    .hero-dot-grid--left {
-      left: -60px;
-      bottom: 20px;
-    }
-    .hero-dot-grid--right {
-      right: -60px;
-      top: 20px;
-    }
-    .hero-dot-grid svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Phone mockup — iPhone 15 Pro frame */
-    .phone-mockup {
-      position: relative;
-      z-index: 5;
-      width: 280px;
-      height: 607px;
-      border-radius: 52px;
-      border: 8px solid #1a1a1a;
-      background: #0a0a0a;
-      box-shadow:
-        0 40px 80px rgba(0,0,0,0.3),
-        0 10px 30px rgba(0,0,0,0.2),
-        0 0 0 1px rgba(255,255,255,0.05),
-        inset 0 0 0 1px rgba(255,255,255,0.06);
-      transform: perspective(1200px) rotateY(-4deg) rotateX(2deg);
-    }
-    .phone-mockup::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: 53px;
-      border: 1px solid rgba(255,255,255,0.08);
-      pointer-events: none;
-      z-index: 1;
-    }
-    .phone-mockup::after {
-      content: '';
-      position: absolute;
-      right: -11px;
-      top: 140px;
-      width: 3px;
-      height: 32px;
-      background: #1a1a1a;
-      border-radius: 0 2px 2px 0;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.04);
-    }
-    .phone-screen {
-      width: 100%;
-      height: 100%;
-      border-radius: 44px;
-      overflow: hidden;
-      background: #fff;
-      position: relative;
-    }
-    .phone-dynamic-island {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 92px;
-      height: 28px;
-      background: #000;
-      border-radius: 20px;
-      z-index: 10;
-      box-shadow: 0 0 0 2px rgba(0,0,0,0.8);
-    }
-    .phone-screen-img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      border-radius: 44px;
-    }
-
-    /* Floating info badges like Baselayer */
-    .floating-badge {
-      position: absolute;
-      display: flex;
+    .btn-accent {
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 18px;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-primary);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      z-index: 8;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      translate: 0 0;
-      transform: translateY(0) scale(1);
-      transition:
-        transform 0.35s var(--ease-out),
-        box-shadow 0.35s var(--ease-out),
-        background-color 0.35s var(--ease-out),
-        border-color 0.35s var(--ease-out);
-      will-change: transform, translate;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+      box-shadow: 0 4px 20px var(--accent-glow);
     }
-    .floating-badge-icon {
-      width: 18px;
-      height: 18px;
+    .hero-form .btn-accent {
+      width: 100%;
+      justify-content: center;
+    }
+    .btn-accent:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px var(--accent-glow);
+    }
+    .btn-accent svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease-out); }
+    .btn-accent:hover svg { transform: translateX(3px); }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       DARK FEATURES SECTION
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .features-dark {
+      background: var(--black);
+      color: #fff;
+      padding: clamp(80px, 10vw, 140px) clamp(20px, 5vw, 80px);
+      border-radius: 24px 24px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .features-dark-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .features-dark-header {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(32px, 5vw, 80px);
+      align-items: start;
+      margin-bottom: clamp(48px, 6vw, 80px);
+    }
+    .fd-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1.12;
+      color: #fff;
+    }
+    .fd-right {
+      padding-top: 8px;
+    }
+    .fd-desc {
+      font-size: clamp(14px, 1vw, 16px);
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .btn-outline-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 100px;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-outline-light:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.35);
+    }
+
+    /* Feature cards grid */
+    .fd-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .fd-card {
+      background: var(--dark-surface);
+      border: 1px solid var(--border-dark);
+      border-radius: 24px;
+      padding: clamp(24px, 3vw, 36px);
+      overflow: hidden;
+      position: relative;
+      transition: all 0.4s var(--ease-out);
+    }
+    .fd-card:hover {
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .fd-card-visual {
+      height: 200px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: #111;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex: 0 0 18px;
     }
-    .floating-badge-icon svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-      transition: transform 0.35s var(--ease-out);
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .floating-badge:hover {
-        transform: translateY(-6px) scale(1.02);
-        box-shadow: 0 16px 44px rgba(0,0,0,0.18);
-        border-color: var(--border-accent);
-        background: rgba(255, 255, 255, 0.98);
-      }
-      .floating-badge:hover .floating-badge-icon svg {
-        transform: rotate(-6deg) scale(1.05);
-      }
-    }
-    .floating-badge:active {
-      transform: translateY(-2px) scale(0.99);
-    }
-    .floating-badge--tl {
-      top: 60px;
-      left: -30px;
-    }
-    .floating-badge--tr {
-      top: 100px;
-      right: -50px;
-    }
-    .floating-badge--bl {
-      bottom: 80px;
-      left: -20px;
-    }
-    @keyframes float-badge {
-      0%, 100% { translate: 0 0; }
-      50% { translate: 0 -10px; }
-    }
-
-    /* ========================================
-       TRUSTED BY / TESTIMONIAL CAROUSEL
-       ======================================== */
-    .trust-section {
-      padding: var(--space-4xl) 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .trust-headline {
-      font-family: var(--font-display);
-      font-size: var(--text-2xl);
-      text-align: center;
-      color: var(--text-primary);
-      letter-spacing: 0.02em;
-      margin-bottom: var(--space-md);
-    }
-    .trust-sub {
-      text-align: center;
-      font-size: var(--text-sm);
-      color: var(--text-muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: clamp(28px, 4vw, 44px);
-    }
-    .trust-carousel {
-      --trust-gap: clamp(14px, 2.6vw, 26px);
-      --trust-card-w: clamp(220px, 18vw, 260px);
-      position: relative;
-    }
-    .trust-carousel-mask {
-      overflow: hidden;
-      mask-image: linear-gradient(to right, transparent 0, #000 3%, #000 97%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 3%, #000 97%, transparent 100%);
-      padding: 2px 0;
-    }
-    .trust-carousel-track {
-      display: flex;
-      width: max-content;
-      animation: trust-carousel-scroll 36s linear infinite;
-    }
-    .trust-carousel-group {
-      display: flex;
-      gap: var(--trust-gap);
-      padding-right: var(--trust-gap);
-      align-items: stretch;
-    }
-    .trust-card {
-      width: var(--trust-card-w);
-      flex: 0 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .trust-card-media {
-      aspect-ratio: 4 / 5;
-      border-radius: 18px;
-      overflow: hidden;
-      background: var(--bg-surface);
-      box-shadow: 0 16px 38px rgba(0,0,0,0.12);
-    }
-    .trust-card img {
+    .fd-card-visual img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.7s var(--ease-out);
     }
-    .trust-card-copy {
-      font-size: clamp(12px, 0.9vw, 14px);
-      line-height: 1.45;
-      color: var(--text-secondary);
-      letter-spacing: 0.01em;
-      padding: 0 2px;
-      min-height: 2.9em;
+    .fd-card-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 6px;
+      color: #fff;
+      letter-spacing: 0.03em;
     }
-    .trust-carousel:hover .trust-carousel-track,
-    .trust-carousel:focus-within .trust-carousel-track {
-      animation-play-state: paused;
-    }
-    .trust-card:hover .trust-card-media img,
-    .trust-card:focus-within .trust-card-media img {
-      transform: scale(1.04);
-    }
-    @keyframes trust-carousel-scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+    .fd-card-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
     }
 
-    /* ========================================
-       STORY / MISSION SECTION
-       ======================================== */
-    .story-section {
-      padding: var(--space-section) 0;
-    }
-    .story-card {
-      max-width: 820px;
-      margin: 0 auto;
-      text-align: center;
-      padding: clamp(32px, 5vw, 64px);
-      background: var(--bg-surface);
-      border-radius: 28px;
-      border: 1px solid var(--border);
-      position: relative;
+    /* Big quote card */
+    .fd-card-quote {
+      grid-column: 1;
+      grid-row: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0;
       overflow: hidden;
-    }
-    .story-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    }
-    .story-emoji {
-      font-size: 48px;
-      margin-bottom: var(--space-lg);
-    }
-    .story-text {
-      font-size: var(--text-lg);
-      color: var(--text-secondary);
-      line-height: 1.75;
-      font-style: italic;
-      max-width: 620px;
-      margin: 0 auto var(--space-lg);
-    }
-    .story-author {
-      font-size: var(--text-sm);
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-    }
-
-    /* ========================================
-       HOW IT WORKS SECTION
-       ======================================== */
-    .how-section {
-      padding: var(--space-section) 0;
       position: relative;
-      overflow: hidden;
+      min-height: 280px;
     }
-    .how-section::before {
-      content: '';
+    .fd-card-quote-bg {
       position: absolute;
       inset: 0;
-      opacity: 0.03;
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(0,0,0,0.15) 60px, rgba(0,0,0,0.15) 61px),
-        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(0,0,0,0.15) 60px, rgba(0,0,0,0.15) 61px);
+      background: linear-gradient(135deg, #1a2332, #0f1922);
+    }
+    .fd-card-quote-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+    }
+    .fd-card-quote-text {
+      position: relative;
+      z-index: 2;
+      padding: clamp(20px, 3vw, 32px);
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7) 40%);
+    }
+    .fd-card-quote-text blockquote {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.5vw, 20px);
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .fd-card-quote-text cite {
+      font-style: normal;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
     }
 
-    .section-eyebrow {
-      font-size: var(--text-xs);
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       ECOSYSTEM SECTION (3 column cards)
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .ecosystem {
+      background: var(--black);
+      padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 80px);
       text-align: center;
-      margin-bottom: var(--space-md);
+      position: relative;
+      overflow: hidden;
     }
-    .section-title {
+    .ecosystem::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(204,51,0,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .eco-title {
       font-family: var(--font-display);
-      font-size: var(--text-3xl);
-      text-align: center;
-      color: var(--text-primary);
-      letter-spacing: 0.01em;
-      margin-bottom: var(--space-md);
-      line-height: 1.0;
+      font-size: clamp(32px, 4.5vw, 64px);
+      font-weight: 400;
+      color: #fff;
+      max-width: 700px;
+      margin: 0 auto clamp(40px, 5vw, 64px);
+      line-height: 1.1;
+      position: relative;
     }
-    .section-subtitle {
-      font-size: var(--text-base);
-      color: var(--text-secondary);
-      text-align: center;
-      max-width: 560px;
-      margin: 0 auto var(--space-3xl);
-      line-height: 1.65;
-    }
-
-    .steps-grid {
+    .eco-title .accent { color: var(--accent); }
+    .eco-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       max-width: 1100px;
       margin: 0 auto;
     }
-    .step-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: clamp(24px, 3vw, 36px);
-      position: relative;
-      transition: all 0.5s var(--ease-out);
-    }
-    .step-card:hover {
-      background: var(--bg-surface-elevated);
-      border-color: var(--border-accent);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    }
-    .step-number {
-      position: absolute;
-      top: 16px;
-      right: 18px;
-      font-family: var(--font-display);
-      font-size: 42px;
-      color: rgba(204, 51, 0, 0.06);
-      line-height: 1;
-    }
-    .step-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-lg);
-    }
-    .step-icon svg {
-      width: 26px;
-      height: 26px;
-    }
-    .step-title {
-      font-family: var(--font-display);
-      font-size: 26px;
-      color: var(--text-primary);
-      letter-spacing: 0.02em;
-      margin-bottom: var(--space-sm);
-    }
-    .step-desc {
-      font-size: var(--text-sm);
-      color: var(--text-secondary);
-      line-height: 1.65;
-    }
-
-    /* ========================================
-       FEATURES / AND MORE
-       ======================================== */
-    .features-section {
-      padding: var(--space-section) 0;
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .feature-card {
-      text-align: center;
-      padding: clamp(24px, 3vw, 40px);
+    .eco-card {
+      background: var(--dark-surface);
+      border: 1px solid var(--border-dark);
       border-radius: 20px;
-      border: 1px solid var(--border);
-      background: #ffffff;
-      transition: all 0.5s var(--ease-out);
+      padding: clamp(24px, 3vw, 32px);
+      text-align: left;
+      transition: all 0.4s var(--ease-out);
     }
-    .feature-card:hover {
-      border-color: var(--border-accent);
+    .eco-card:hover {
+      border-color: rgba(255,255,255,0.15);
       transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.15);
     }
-    .feature-icon {
+    .eco-card-icons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .eco-card-icons img, .eco-card-icons .eco-ico {
       width: 48px;
       height: 48px;
-      margin: 0 auto var(--space-lg);
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    .eco-ico {
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 14px;
-      background: var(--accent-subtle);
+      font-size: 22px;
+      font-weight: 700;
     }
-    .feature-icon svg { width: 24px; height: 24px; color: var(--accent); }
-    .feature-title {
-      font-family: var(--font-display);
-      font-size: 24px;
-      color: var(--text-primary);
-      letter-spacing: 0.02em;
-      margin-bottom: var(--space-sm);
-    }
-    .feature-desc {
-      font-size: var(--text-sm);
-      color: var(--text-secondary);
-      line-height: 1.65;
+    .eco-card-text {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
     }
 
-    /* ========================================
-       IMPROVING / ROADMAP BANNER
-       ======================================== */
-    .improving-section {
-      padding: var(--space-section) 0;
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       COMMUNITY SECTION (light bg)
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .security {
+      background: var(--off-white);
+      padding: clamp(80px, 10vw, 140px) clamp(20px, 5vw, 80px);
     }
-    .improving-card {
-      max-width: 900px;
+    .security-inner {
+      max-width: 1280px;
       margin: 0 auto;
-      padding: clamp(36px, 5vw, 64px);
-      background: linear-gradient(135deg, var(--accent) 0%, #7a1e00 100%);
-      border-radius: 28px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: center;
     }
-    .improving-card::before {
+    .sec-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .sec-title strong {
+      font-weight: 400;
+      font-style: normal;
+      color: var(--accent);
+    }
+    .sec-desc {
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 460px;
+    }
+    .sec-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .sec-feature {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 18px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      max-width: 360px;
+      transition: all 0.25s var(--ease-out);
+      cursor: pointer;
+    }
+    .sec-feature:hover,
+    .sec-feature.is-active {
+      background: rgba(204, 51, 0, 0.06);
+      border-color: rgba(204, 51, 0, 0.2);
+      transform: translateX(4px);
+    }
+    .sec-feature-icon { flex-shrink: 0; }
+    .sec-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(204, 51, 0, 0.18);
+      display: block;
+    }
+    .sec-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .sec-studio-name {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      line-height: 1.2;
+    }
+    .sec-studio-city {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--gray);
+      letter-spacing: 0.02em;
+    }
+
+    /* Community visual â€” dark image slideshow card */
+    .sec-visual {
+      background: var(--dark);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      aspect-ratio: 4 / 3;
+    }
+    .sec-visual::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 50%);
+        radial-gradient(ellipse at 30% 20%, rgba(204, 51, 0, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(100, 100, 255, 0.04) 0%, transparent 50%);
+      z-index: 1;
+      pointer-events: none;
     }
-    .improving-icon {
-      margin-bottom: var(--space-lg);
+    .sec-slideshow { position: absolute; inset: 0; }
+    .sec-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.7s var(--ease-out);
+      z-index: 0;
     }
-    .improving-icon svg { width: 36px; height: 36px; color: #fff; }
-    .improving-title {
-      font-family: var(--font-display);
-      font-size: var(--text-2xl);
-      color: #fff;
-      letter-spacing: 0.02em;
-      margin-bottom: var(--space-md);
-      position: relative;
+    .sec-slide--active { opacity: 1; z-index: 2; }
+    .sec-slide-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sec-slide-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 4;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+      padding: 32px 24px 18px;
     }
-    .improving-text {
-      font-size: var(--text-base);
-      color: rgba(255,255,255,0.8);
-      line-height: 1.7;
-      max-width: 560px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    /* ========================================
-       FAQ SECTION
-       ======================================== */
-    .faq-section {
-      padding: var(--space-section) 0;
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border);
-    }
-    .faq-deco {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: var(--space-xl);
-    }
-    .faq-deco-line {
-      width: 60px;
-      height: 2px;
-      background: var(--accent);
-      opacity: 0.4;
-    }
-    .faq-deco svg { width: 24px; height: 24px; color: var(--accent); }
-    .faq-container {
-      max-width: 700px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .faq-item {
-      background: var(--bg-primary);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      overflow: hidden;
-      transition: border-color 0.3s ease;
-    }
-    .faq-item:hover { border-color: var(--border-accent); }
-    .faq-question {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 24px;
-      gap: 16px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
+    .sec-slide-label {
       font-family: var(--font-body);
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 600;
-      color: var(--text-primary);
-    }
-    .faq-question:hover { background: rgba(255,255,255,0.02); }
-    .faq-chevron {
-      flex-shrink: 0;
-      transition: transform 0.3s var(--ease-out);
-    }
-    .faq-chevron svg { width: 20px; height: 20px; color: var(--accent); }
-    .faq-item.open .faq-chevron { transform: rotate(90deg); }
-    .faq-answer {
-      padding: 0 24px 20px;
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      display: none;
-    }
-    .faq-item.open .faq-answer { display: block; }
-    .faq-quote {
-      text-align: center;
-      margin-top: var(--space-3xl);
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--accent);
-      font-style: italic;
-    }
-
-    /* ========================================
-       CTA SECTION
-       ======================================== */
-    .cta-section {
-      padding: var(--space-section) 0;
-      text-align: center;
-    }
-    .cta-title {
-      font-family: var(--font-display);
-      font-size: var(--text-3xl);
-      color: var(--text-primary);
-      letter-spacing: 0.01em;
-      margin-bottom: var(--space-md);
-      line-height: 1.0;
-    }
-    .cta-sub {
-      font-size: var(--text-base);
-      color: var(--text-secondary);
-      max-width: 480px;
-      margin: 0 auto var(--space-2xl);
-      line-height: 1.65;
-    }
-    .cta-form {
-      display: flex;
-      gap: 12px;
-      max-width: 480px;
-      margin: 0 auto;
-      justify-content: center;
-    }
-
-    /* ========================================
-       FOOTER
-       ======================================== */
-    .footer {
-      padding: var(--space-3xl) 0;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-    .footer-logo {
-      font-family: var(--font-display);
-      font-size: 24px;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.9);
       letter-spacing: 0.04em;
-      margin-bottom: var(--space-lg);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      text-transform: uppercase;
     }
-    .footer-logo img {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-      display: block;
-    }
-    .footer-links {
+    .sec-slide-dots {
+      position: absolute;
+      top: 16px; right: 20px;
+      z-index: 4;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: var(--space-lg);
+      gap: 6px;
+    }
+    .sec-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .sec-dot--active { background: var(--accent); transform: scale(1.25); }
+
+    /* Locked / coming-soon slides */
+    .sec-avatar--blur img {
+      filter: blur(8px);
+      transform: scale(1.1);
+    }
+    .sec-slide--locked .sec-slide-img {
+      filter: blur(10px) saturate(0.4);
+      transform: scale(1.04);
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       CTA + FOOTER (dark section)
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .final-cta {
+      background: var(--black);
+      padding: clamp(80px, 10vw, 160px) clamp(20px, 5vw, 80px) clamp(40px, 5vw, 60px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150%;
+      height: 80%;
+      background:
+        radial-gradient(ellipse at 30% 80%, rgba(204,51,0,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 60%, rgba(80,80,200,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    /* Shooting stars */
+    .star {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      background: #fff;
+      opacity: 0;
+      animation: shoot 3s linear infinite;
+    }
+    .star::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to left, rgba(255,255,255,0.6), transparent);
+    }
+    .star-1 { top: 15%; left: 20%; animation-delay: 0s; }
+    .star-2 { top: 30%; left: 60%; animation-delay: 1.2s; }
+    .star-3 { top: 10%; left: 45%; animation-delay: 2.4s; }
+    .star-4 { top: 25%; left: 80%; animation-delay: 0.6s; }
+    @keyframes shoot {
+      0% { opacity: 0; transform: translate(0, 0) rotate(-35deg); }
+      5% { opacity: 1; }
+      40% { opacity: 0; transform: translate(-200px, 120px) rotate(-35deg); }
+      100% { opacity: 0; transform: translate(-200px, 120px) rotate(-35deg); }
+    }
+
+    .final-cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 400;
+      color: #fff;
+      max-width: 600px;
+      margin: 0 auto 28px;
+      line-height: 1.12;
+      position: relative;
+    }
+    .final-cta .btn-accent {
+      font-size: 16px;
+      padding: 16px 36px;
+      position: relative;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--black);
+      padding: clamp(40px, 5vw, 60px) clamp(20px, 5vw, 80px) clamp(24px, 3vw, 36px);
+      border-top: 1px solid var(--border-dark);
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
       flex-wrap: wrap;
     }
-    .footer-link {
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .footer-logo-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .footer-logo-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-links-list a {
       font-size: 14px;
-      font-weight: 600;
-      color: var(--accent);
-      transition: opacity 0.3s;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.3s;
     }
-    .footer-link:hover { opacity: 0.7; }
-    .footer-divider {
-      color: var(--text-muted);
+    .footer-links-list a:hover { color: #fff; }
+    .footer-right { text-align: right; }
+    .footer-social-label {
       font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
     }
-    .footer-copy {
-      font-size: var(--text-xs);
-      color: var(--text-muted);
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
     }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      transition: all 0.3s ease;
+    }
+    .footer-social a:hover {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+    .footer-social svg { width: 16px; height: 16px; }
+    .footer-newsletter {
+      display: flex;
+      gap: 0;
+      margin-top: 16px;
+    }
+    .footer-newsletter input {
+      flex: 1;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-right: none;
+      border-radius: 8px 0 0 8px;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 13px;
+      outline: none;
+    }
+    .footer-newsletter input::placeholder { color: rgba(255,255,255,0.3); }
+    .footer-newsletter button {
+      padding: 10px 18px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 0 8px 8px 0;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.3s;
+    }
+    .footer-newsletter button:hover { background: rgba(255,255,255,0.16); }
 
-    /* ========================================
-       REVEAL ANIMATIONS
-       ======================================== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
-    .reveal-delay-4 { transition-delay: 0.32s; }
-    .reveal-delay-5 { transition-delay: 0.40s; }
-    .reveal-delay-6 { transition-delay: 0.48s; }
-
-    /* Hero specific entrance */
-    .hero-reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      animation: hero-entrance 1s var(--ease-out) forwards;
-    }
-    .hero-reveal-1 { animation-delay: 0.1s; }
-    .hero-reveal-2 { animation-delay: 0.2s; }
-    .hero-reveal-3 { animation-delay: 0.35s; }
-    .hero-reveal-4 { animation-delay: 0.5s; }
-    .hero-reveal-5 { animation-delay: 0.65s; }
-    @keyframes hero-entrance {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Phone entrance */
-    .phone-entrance {
-      opacity: 0;
-      transform: perspective(1200px) rotateY(-4deg) rotateX(2deg) translateY(60px);
-      animation: phone-in 1.2s var(--ease-spring) 0.4s forwards;
-    }
-    @keyframes phone-in {
-      to {
-        opacity: 1;
-        transform: perspective(1200px) rotateY(-4deg) rotateX(2deg) translateY(0);
-      }
-    }
-
-    /* Badge float entrance */
-    .badge-entrance {
-      opacity: 0;
-      transform: translateY(20px) scale(0.9);
-      translate: 0 0;
-    }
-    .badge-entrance-1 {
-      animation:
-        badge-in 0.8s var(--ease-spring) 0.8s forwards,
-        float-badge 6s ease-in-out 1.6s infinite;
-    }
-    .badge-entrance-2 {
-      animation:
-        badge-in 0.8s var(--ease-spring) 1.0s forwards,
-        float-badge 6s ease-in-out 1.8s infinite;
-    }
-    .badge-entrance-3 {
-      animation:
-        badge-in 0.8s var(--ease-spring) 1.2s forwards,
-        float-badge 6s ease-in-out 2.0s infinite;
-    }
-    @keyframes badge-in {
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* ========================================
-       REDUCED MOTION
-       ======================================== */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-      .reveal { opacity: 1; transform: none; }
-      .trust-carousel-mask {
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        mask-image: none;
-        -webkit-mask-image: none;
-        scrollbar-width: thin;
-      }
-      .trust-carousel-track { animation: none; }
-      .trust-carousel-group {
-        padding-right: 0;
-      }
-      .trust-card { scroll-snap-align: start; }
-    }
-
-    /* ========================================
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        RESPONSIVE
-       ======================================== */
-    @media (max-width: 1200px) {
-      .hero-content { gap: 40px; }
-    }
-
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
     @media (max-width: 900px) {
+      .nav { padding: 8px 12px 8px 14px; gap: 12px; }
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
       .nav-links.open {
         display: flex;
         position: fixed;
         inset: 0;
-        background: rgba(246, 245, 241, 0.97);
+        background: rgba(11,11,11,0.97);
         backdrop-filter: blur(20px);
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 32px;
+        gap: 28px;
         z-index: 999;
+        border-radius: 0;
       }
-      .nav-links.open .nav-link {
-        font-size: 20px;
-        color: var(--text-primary);
+      .nav-links.open a { font-size: 18px; color: #fff; }
+      .features-dark-header { grid-template-columns: 1fr; }
+      .fd-grid { grid-template-columns: 1fr; }
+      .fd-card-quote { grid-column: 1; }
+      .eco-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .security-inner { grid-template-columns: 1fr; }
+      .hero-phone-area { max-width: 560px; min-height: 560px; }
+      .fc {
+        padding: 8px 12px;
+        border-radius: 10px;
+        gap: 8px;
       }
-      .nav-links.open .nav-actions {
-        flex-direction: column;
-        margin-top: 24px;
-      }
-
-      .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding-top: 40px;
-      }
-      .hero-text {
-        max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .hero-sub { margin-left: auto; margin-right: auto; }
-      .hero-form { flex-direction: column; max-width: 380px; width: 100%; margin: 0 auto; }
-      .hero-form-success { margin: 0 auto; }
-      .hero-privacy { text-align: center; }
-
-      .hero-visual { min-height: 560px; }
-      .hero-dot-grid { display: none; }
-      .floating-badge--tl { left: 0; top: 30px; }
-      .floating-badge--tr { right: 0; top: 80px; }
-      .floating-badge--bl { left: 10px; bottom: 50px; }
-
-      .steps-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-      .features-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-      .trust-carousel {
-        --trust-card-w: clamp(180px, 32vw, 220px);
-        --trust-gap: clamp(12px, 2.4vw, 18px);
-      }
-
-      .cta-form { flex-direction: column; max-width: 340px; }
+      .fc-icon { width: 26px; height: 26px; font-size: 12px; }
+      .fc-name { font-size: 11px; }
+      .fc-status { font-size: 9px; }
+      .fc-amount { font-size: 11px; }
+      .fc-hash { font-size: 8px; }
+      .fc-1 { top: 8%; --center-x: -64px; --spread-x: -186px; }
+      .fc-2 { top: 28%; --center-x: -74px; --spread-x: -194px; }
+      .fc-3 { top: 50%; --center-x: -58px; --spread-x: -174px; }
+      .fc-4 { top: 10%; --center-x: 64px; --spread-x: 186px; }
+      .fc-5 { top: 30%; --center-x: 76px; --spread-x: 196px; }
+      .fc-6 { top: 52%; --center-x: 60px; --spread-x: 176px; }
+      .footer-inner { flex-direction: column; }
+      .footer-right { text-align: left; }
+      .footer-social { justify-content: flex-start; }
     }
 
     @media (max-width: 480px) {
-      .phone-mockup {
-        width: 240px;
-        height: 520px;
-        border-width: 7px;
-        border-radius: 46px;
+      .hero-phone-area { min-height: 500px; margin-top: 28px; }
+      .phone-mockup { width: 240px; border-radius: 38px; border-width: 7px; }
+      .phone-notch { width: 80px; height: 22px; border-radius: 0 0 12px 12px; }
+      .phone-screen { border-radius: inherit; }
+      .phone-screen-img { border-radius: inherit; }
+      .fc {
+        padding: 7px 10px;
+        border-radius: 9px;
+        gap: 7px;
       }
-      .phone-mockup::after { top: 120px; right: -10px; width: 2px; height: 28px; }
-      .phone-screen { border-radius: 39px; }
-      .phone-screen-img { border-radius: 39px; }
-      .phone-dynamic-island { width: 78px; height: 24px; }
-      .floating-badge { font-size: 10px; padding: 8px 14px; }
-      .hero-visual { min-height: 460px; }
-      .trust-carousel {
-        --trust-card-w: clamp(160px, 44vw, 178px);
-        --trust-gap: 12px;
-      }
+      .fc-icon { width: 23px; height: 23px; font-size: 11px; }
+      .fc-name { font-size: 10px; }
+      .fc-status { font-size: 8px; }
+      .fc-amount { font-size: 10px; }
+      .fc-hash { display: none; }
+      .fc-1 { top: 9%; --center-x: -52px; --spread-x: -146px; }
+      .fc-2 { top: 30%; --center-x: -60px; --spread-x: -154px; }
+      .fc-3 { top: 52%; --center-x: -46px; --spread-x: -136px; }
+      .fc-4 { top: 11%; --center-x: 52px; --spread-x: 146px; }
+      .fc-5 { top: 32%; --center-x: 62px; --spread-x: 156px; }
+      .fc-6 { top: 54%; --center-x: 48px; --spread-x: 138px; }
+      .hero-headline { font-size: clamp(36px, 10vw, 52px); }
     }
 
-    /* ========================================
-       COOKIE BANNER
-       ======================================== */
-    .cookie-banner {
-      position: fixed;
-      left: 24px;
-      right: 24px;
-      bottom: 24px;
-      z-index: 2000;
-      display: none;
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+      .fc { transition: none !important; }
     }
-    .cookie-banner.is-visible { display: block; }
-    .cookie-banner-card {
-      background: #0b0b0b;
-      color: #f6f5f1;
-      border-radius: 20px;
-      padding: clamp(16px, 2vw, 24px);
-      box-shadow:
-        0 20px 60px rgba(0,0,0,0.45),
-        0 1px 0 rgba(255,255,255,0.04) inset;
-      display: grid;
-      grid-template-columns: 1.2fr auto;
-      gap: 16px 24px;
+
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Hero badge */
+    .hero-badge {
+      display: inline-flex;
       align-items: center;
-    }
-    .cookie-banner-title {
-      font-family: var(--font-display);
-      font-size: clamp(20px, 2vw, 28px);
-      letter-spacing: 0.04em;
-      margin-bottom: 6px;
-    }
-    .cookie-banner-text {
-      font-size: var(--text-sm);
-      color: rgba(246,245,241,0.78);
-      line-height: 1.6;
-      max-width: 560px;
-    }
-    .cookie-banner-actions {
-      display: flex;
       gap: 10px;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-    }
-    .btn-cookie {
-      padding: 12px 22px;
-      border-radius: 999px;
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: transparent;
-      color: #f6f5f1;
-      cursor: pointer;
-      transition: transform 0.25s var(--ease-out), box-shadow 0.35s var(--ease-out), background 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
-    }
-    .btn-cookie:hover {
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,0.35);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-    }
-    .btn-cookie-primary {
-      background: #ffffff;
-      color: #0b0b0b;
-      border-color: transparent;
-    }
-    .btn-cookie-primary:hover {
-      box-shadow: 0 12px 28px rgba(255,255,255,0.25);
-    }
-    .cookie-banner-link {
-      color: rgba(246,245,241,0.9);
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-    .cookie-preferences {
-      display: none;
-      margin-top: 14px;
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #111111;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
-    }
-    .cookie-preferences.is-open { display: block; }
-    .cookie-preferences-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 8px;
-    }
-    .cookie-close {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: transparent;
-      color: #f6f5f1;
-      font-size: 20px;
-      line-height: 1;
-      cursor: pointer;
-      transition: transform 0.2s var(--ease-out), border-color 0.3s var(--ease-out);
-    }
-    .cookie-close:hover {
-      transform: rotate(6deg);
-      border-color: rgba(255,255,255,0.4);
-    }
-    .cookie-preferences-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin: 12px 0 16px;
-    }
-    .cookie-pref-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-    .cookie-pref-title {
+      padding: 8px 18px;
+      border-radius: 50px;
+      border: 1px solid rgba(204, 51, 0, 0.22);
+      background: rgba(204, 51, 0, 0.08);
+      margin-bottom: 20px;
       font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #f6f5f1;
-    }
-    .cookie-pref-desc {
-      font-size: 12px;
-      color: rgba(246,245,241,0.65);
-      margin-top: 4px;
-    }
-    .cookie-toggle {
-      font-size: 11px;
-      font-weight: 700;
-      color: rgba(246,245,241,0.6);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .cookie-switch {
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.04em;
       position: relative;
-      width: 46px;
-      height: 26px;
-      display: inline-block;
+      z-index: 2;
     }
-    .cookie-switch input { opacity: 0; width: 0; height: 0; }
-    .cookie-slider {
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.15);
-      border-radius: 999px;
-      transition: background 0.3s var(--ease-out);
-      cursor: pointer;
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse-dot 2s ease-in-out infinite;
+      flex-shrink: 0;
     }
-    .cookie-slider::after {
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    /* Section eyebrows */
+    .section-eyebrow,
+    .fd-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .fd-eyebrow { text-align: left; }
+
+    /* Ecosystem subtitle + card titles */
+    .eco-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto clamp(40px, 5vw, 64px);
+      line-height: 1.65;
+    }
+    .eco-card-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       FAQ SECTION
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .faq {
+      background: var(--off-white);
+      padding: clamp(80px, 10vw, 140px) clamp(20px, 5vw, 80px);
+      position: relative;
+      overflow: hidden;
+    }
+    .faq::before {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 20px;
-      left: 3px;
-      top: 3px;
-      border-radius: 50%;
-      background: #f6f5f1;
-      transition: transform 0.3s var(--ease-out);
+      top: 0; left: clamp(20px, 5vw, 80px); right: clamp(20px, 5vw, 80px);
+      height: 1px;
+      background: var(--border);
     }
-    .cookie-switch input:checked + .cookie-slider {
-      background: rgba(16,185,129,0.6);
+    .faq-inner {
+      max-width: 960px;
+      margin: 0 auto;
     }
-    .cookie-switch input:checked + .cookie-slider::after {
-      transform: translateX(20px);
+    .faq-header {
+      text-align: center;
+      margin-bottom: clamp(48px, 6vw, 80px);
     }
-    @media (max-width: 720px) {
-      .cookie-banner {
-        left: 16px;
-        right: 16px;
-        bottom: 16px;
-      }
-      .cookie-banner-card {
-        grid-template-columns: 1fr;
-        text-align: left;
-      }
-      .cookie-banner-actions {
-        justify-content: flex-start;
-      }
+    .faq-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .faq-title {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 7vw, 100px);
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+    .faq-subtitle {
+      font-size: 16px;
+      color: var(--gray);
+      max-width: 460px;
+      margin: 0 auto;
+      line-height: 1.65;
     }
 
-    /* Focus visible */
-    :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
+    /* List */
+    .faq-list {
+      border-top: 1px solid var(--border);
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      transition: border-color 0.3s ease;
+    }
+    .faq-item::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.45s var(--ease-out);
+    }
+    .faq-item.faq-open::after {
+      transform: scaleY(1);
+    }
+
+    /* Button row */
+    .faq-btn {
+      display: grid;
+      grid-template-columns: 56px 1fr 34px;
+      gap: 20px;
+      align-items: center;
+      padding: 26px 0 26px 16px;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.25s ease;
+    }
+    .faq-btn:hover { background: rgba(204,51,0,0.03); }
+
+    .faq-num {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 46px);
+      color: rgba(0,0,0,0.1);
+      line-height: 1;
+      letter-spacing: 0.04em;
+      transition: color 0.35s ease;
+      user-select: none;
+    }
+    .faq-item.faq-open .faq-num { color: var(--accent); }
+
+    .faq-q {
+      font-family: var(--font-body);
+      font-size: clamp(15px, 1.15vw, 18px);
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.4;
+      transition: color 0.3s ease;
+    }
+
+    .faq-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.4s var(--ease-out);
+      color: var(--gray);
+      background: transparent;
+    }
+    .faq-icon svg {
+      width: 14px; height: 14px;
+      transition: transform 0.4s var(--ease-out);
+    }
+    .faq-item.faq-open .faq-icon {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .faq-item.faq-open .faq-icon svg { transform: rotate(45deg); }
+
+    /* Answer panel â€” grid-template-rows trick for smooth animation */
+    .faq-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.45s var(--ease-out);
+    }
+    .faq-body-inner { overflow: hidden; }
+    .faq-a {
+      padding: 0 0 28px calc(56px + 20px + 16px);
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.75;
+      max-width: 640px;
+    }
+    .faq-item.faq-open .faq-body { grid-template-rows: 1fr; }
+
+    /* Closing quote */
+    .faq-quote {
+      text-align: center;
+      margin-top: clamp(48px, 6vw, 80px);
+      font-size: clamp(16px, 1.4vw, 20px);
+      font-weight: 700;
+      color: var(--accent);
+      font-style: italic;
+      font-family: var(--font-body);
+    }
+
+    @media (max-width: 600px) {
+      .faq-btn { grid-template-columns: 40px 1fr 30px; gap: 12px; padding-left: 12px; }
+      .faq-a { padding-left: calc(40px + 12px + 12px); }
+    }
+
+    /* Loading */
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: var(--off-white);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    .loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-icon {
+      width: 40px;
+      height: 40px;
+      animation: loaderPulse 1.2s ease-in-out infinite;
+    }
+    .loader-icon img { width: 100%; height: 100%; object-fit: contain; }
+    @keyframes loaderPulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.92); }
+      50% { opacity: 1; transform: scale(1); }
     }
   </style>
+</head>
+<body data-i18n-page="index">
+  <a href="#main" class="skip-link" data-i18n="index.skip">Skip to main content</a>
 
-  <script type="application/ld+json" id="schemaData">
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-icon"><img src="/icon.png" alt="Loading"></div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="inkLedger home">
+      <span class="nav-logo-icon"><img src="/icon.png" alt="inkLedger"></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#how" data-i18n="index.nav.how">How It Works</a>
+      <a href="#features" data-i18n="index.nav.features">Features</a>
+      <a href="#faq" data-i18n="index.nav.faq">FAQ</a>
+    </div>
+    <a href="#heroFormContainer" class="nav-cta" data-i18n="index.nav.join_waitlist">Get Early Access</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main id="main" role="main">
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• HERO â•â•â•â•â•â•â•â•â•â•â• -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-badge hero-anim hero-anim-1">
+        <span class="hero-badge-dot"></span>
+        <span data-i18n="index.hero.badge">For artists & studios. Not accountants.</span>
+      </div>
+
+      <h1 class="hero-headline hero-anim hero-anim-2" data-i18n="index.hero.headline">
+        KILL THE ADMIN CHAOS. <span style="color:var(--accent);">KEEP THE INK. KEEP THE CASH.</span>
+      </h1>
+
+      <div class="hero-phone-area hero-anim hero-anim-3">
+        <!-- Floating transaction cards -->
+        <div class="float-cards is-center" aria-hidden="true">
+          <div class="fc fc-1">
+            <div class="fc-icon" style="background:#f7931a;color:#fff;font-weight:700;">&#9733;</div>
+            <div><div class="fc-name">Session</div><div class="fc-status">Booked</div></div>
+            <div class="fc-right"><div class="fc-amount">&euro;350</div><div class="fc-hash">inv...8F2A</div></div>
+          </div>
+          <div class="fc fc-2">
+            <div class="fc-icon" style="background:#10b981;color:#fff;">&#10003;</div>
+            <div><div class="fc-name">Deposit</div><div class="fc-status">Received</div></div>
+            <div class="fc-right"><div class="fc-amount">&euro;120</div><div class="fc-hash">dep...C4D1</div></div>
+          </div>
+          <div class="fc fc-3">
+            <div class="fc-icon" style="background:#ec4899;color:#fff;">&#9829;</div>
+            <div><div class="fc-name">Follow-up</div><div class="fc-status">Sent</div></div>
+            <div class="fc-right"><div class="fc-amount">&mdash;</div><div class="fc-hash">msg...A09B</div></div>
+          </div>
+          <div class="fc fc-4">
+            <div class="fc-icon" style="background:#6366f1;color:#fff;font-size:12px;">&#9998;</div>
+            <div><div class="fc-name">Invoice</div><div class="fc-status">Generated</div></div>
+            <div class="fc-right"><div class="fc-amount">&euro;780</div><div class="fc-hash">inv...F6D9</div></div>
+          </div>
+          <div class="fc fc-5">
+            <div class="fc-icon" style="background:#f59e0b;color:#fff;">&#9733;</div>
+            <div><div class="fc-name">New Client</div><div class="fc-status">Registered</div></div>
+            <div class="fc-right"><div class="fc-amount">&mdash;</div><div class="fc-hash">cli...B3E7</div></div>
+          </div>
+          <div class="fc fc-6">
+            <div class="fc-icon" style="background:#06b6d4;color:#fff;">$</div>
+            <div><div class="fc-name">Expense</div><div class="fc-status">Logged</div></div>
+            <div class="fc-right"><div class="fc-amount">&euro;45</div><div class="fc-hash">exp...2C8F</div></div>
+          </div>
+        </div>
+
+        <!-- Phone mockup -->
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img
+              class="phone-screen-img"
+              src="/IMG_3083.jpg"
+              alt="inkLedger app dashboard"
+              data-i18n="index.hero.phone_alt"
+              data-i18n-attr="alt"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            >
+          </div>
+        </div>
+      </div>
+
+      <p class="hero-sub hero-anim hero-anim-4" data-i18n="index.hero.sub">
+        inkLedger is your studio's antiâ€‘chaos system: bookings, deposits, expenses, consent forms, and taxâ€‘ready numbers â€” in one clean place.
+      </p>
+
+      <div class="hero-cta-group hero-anim hero-anim-5">
+        <div id="heroFormContainer">
+          <form class="hero-form" id="heroForm">
+            <input
+              type="email"
+              class="hero-input"
+              id="heroEmail"
+              placeholder="Enter your email"
+              data-i18n="index.hero.email_placeholder"
+              data-i18n-attr="placeholder"
+              autocomplete="email"
+              required
+            >
+            <div class="honeypot" aria-hidden="true">
+              <label for="heroHp" data-i18n="index.hero.honeypot">Leave this field blank</label>
+              <input type="text" id="heroHp" name="hp_field" tabindex="-1" autocomplete="off">
+            </div>
+            <button type="submit" class="btn-accent" id="heroSubmit">
+              Start Free
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• FEATURES (dark section) â•â•â•â•â•â•â•â•â•â•â• -->
+    <section class="features-dark" id="features" aria-label="Features">
+      <div class="features-dark-inner">
+        <div class="features-dark-header reveal">
+          <div>
+            <p class="fd-eyebrow" data-i18n="index.features.eyebrow">NO FLUFF</p>
+            <h2 class="fd-title" data-i18n="index.features.title">BUILT TO STAY CLEAN</h2>
+          </div>
+          <div class="fd-right">
+            <p class="fd-desc" data-i18n="index.features.desc">Everything you need. None of the busywork. From smart booking to tax-ready bookkeeping, designed to keep your studio running clean.</p>
+            <a href="#heroFormContainer" class="btn-outline-light">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span data-i18n="index.features.dl">Join Waitlist</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="fd-grid">
+          <div class="fd-card reveal reveal-d1">
+            <div class="fd-card-visual">
+              <img src="/assets/client - Copy.jpg" alt="" loading="lazy" decoding="async">
+            </div>
+            <h3 class="fd-card-title" data-i18n="index.features.item1.title">CLIENT MANAGEMENT</h3>
+            <p class="fd-card-desc" data-i18n="index.features.item1.desc">Clients book directly through your personalized page. Upload design references, pick a slot, pay a deposit â€” all automatic.</p>
+          </div>
+
+          <div class="fd-card reveal reveal-d2">
+            <div class="fd-card-visual">
+              <img src="/assets/revenue.jpg" alt="" loading="lazy" decoding="async">
+            </div>
+            <h3 class="fd-card-title" data-i18n="index.features.item2.title">REVENUE INSIGHTS</h3>
+            <p class="fd-card-desc" data-i18n="index.features.item2.desc">Collect deposits upfront, track payments, and manage balances. No more chasing invoices or losing track of who paid what.</p>
+          </div>
+
+          <div class="fd-card fd-card-quote reveal reveal-d3">
+            <div class="fd-card-quote-bg">
+              <img src="/assets/testimonial-05.jpg" alt="" loading="lazy" decoding="async">
+            </div>
+            <div class="fd-card-quote-text">
+              <blockquote data-i18n="index.features.quote">"inkLedger exists because tattoo artists shouldn't have to wrestle spreadsheets to get paid. You became an artist to create â€” not to chase deposits, untangle calendars, and decode receipts."</blockquote>
+              <cite data-i18n="index.features.quote_author">&mdash; Made in the Netherlands. Built for the hustle.</cite>
+            </div>
+          </div>
+
+          <div class="fd-card reveal reveal-d4">
+            <div class="fd-card-visual">
+              <img src="/assets/taxes.jpg" alt="" loading="lazy" decoding="async">
+            </div>
+            <h3 class="fd-card-title" data-i18n="index.features.item3.title">FEEL FREE.</h3>
+            <p class="fd-card-desc" data-i18n="index.features.item3.desc">See your earnings in real-time. Monthly breakdowns, trends, and projections so you always know where your business stands.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• ECOSYSTEM (How It Works) â•â•â•â•â•â•â•â•â•â•â• -->
+    <section class="ecosystem" id="how" aria-label="How it works">
+      <p class="section-eyebrow reveal" data-i18n="index.how.eyebrow">How It Works</p>
+      <h2 class="eco-title reveal reveal-d1" data-i18n="index.how.title">YOUR STUDIO, ON LOCK.</h2>
+      <p class="eco-subtitle reveal reveal-d2" data-i18n="index.how.sub">From first inquiry to tax&#8209;ready numbers â€” every step of your freelance tattoo business in one place.</p>
+      <div class="eco-grid">
+        <div class="eco-card reveal reveal-d1">
+          <div class="eco-card-icons">
+            <div class="eco-ico" style="background:rgba(204,51,0,0.15);color:var(--accent);">&#128197;</div>
+            <div class="eco-ico" style="background:rgba(16,185,129,0.15);color:#10b981;">&#128176;</div>
+          </div>
+          <h3 class="eco-card-title">SMART BOOKING</h3>
+          <p class="eco-card-text" data-i18n="index.how.card1">Clients book through your personalized page, upload references, pick a slot, and pay a deposit â€” all in one seamless flow. No more DM chaos.</p>
+        </div>
+        <div class="eco-card reveal reveal-d2">
+          <div class="eco-card-icons">
+            <div class="eco-ico" style="background:rgba(99,102,241,0.15);color:#6366f1;">&#128221;</div>
+            <div class="eco-ico" style="background:rgba(245,158,11,0.15);color:#f59e0b;">&#128276;</div>
+            <div class="eco-ico" style="background:rgba(236,72,153,0.15);color:#ec4899;">&#9829;</div>
+          </div>
+          <h3 class="eco-card-title">CLIENT PROFILES &amp; REMINDERS</h3>
+          <p class="eco-card-text" data-i18n="index.how.card2">Full client profiles with history, allergies, references, and session notes. Automatic reminders, aftercare instructions, and follow-up bookings â€” all organized.</p>
+        </div>
+        <div class="eco-card reveal reveal-d3">
+          <div class="eco-card-icons">
+            <div class="eco-ico" style="background:rgba(6,182,212,0.15);color:#06b6d4;">&#128202;</div>
+          </div>
+          <h3 class="eco-card-title">TAX-READY BOOKKEEPING</h3>
+          <p class="eco-card-text" data-i18n="index.how.card3">Tax-ready bookkeeping built for Dutch freelancers. Revenue tracking, expense logging, and quarterly overviews â€” ready for the Belastingdienst. Export to CSV or PDF anytime.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• COMMUNITY â•â•â•â•â•â•â•â•â•â•â• -->
+    <section class="security" id="community" aria-label="Join the community">
+      <div class="security-inner">
+        <div class="reveal">
+          <h2 class="sec-title">YOU'RE NOT ALONE IN THIS. <strong>JOIN THE PACK.</strong></h2>
+          <p class="sec-desc">Our tattoo artists are already replacing admin chaos with a studio-first workflow. Join early, shape what we ship next, and secure your spot before public launch.</p>
+          <div class="sec-features">
+            <div class="sec-feature" data-slide="0" tabindex="0" role="button" aria-pressed="false">
+              <span class="sec-feature-icon sec-avatar">
+                <img src="/assets/testimonial-01.jpg" alt="Luisltattoo" loading="lazy">
+              </span>
+              <span class="sec-studio-name">Luisltattoo<span class="sec-studio-city">Den Haag</span></span>
+            </div>
+            <div class="sec-feature" data-slide="1" tabindex="0" role="button" aria-pressed="false">
+              <span class="sec-feature-icon sec-avatar sec-avatar--blur">
+                <img src="/assets/testimonial-03.jpg" alt="" loading="lazy">
+              </span>
+              <span class="sec-studio-name">Revealed soon<span class="sec-studio-city">Amsterdam</span></span>
+            </div>
+            <div class="sec-feature" data-slide="2" tabindex="0" role="button" aria-pressed="false">
+              <span class="sec-feature-icon sec-avatar sec-avatar--blur">
+                <img src="/assets/testimonial-06.jpg" alt="" loading="lazy">
+              </span>
+              <span class="sec-studio-name">Revealed soon<span class="sec-studio-city">Utrecht</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="sec-visual reveal reveal-d2" aria-label="Studio showcase">
+          <div class="sec-slideshow">
+            <div class="sec-slide sec-slide--active" data-index="0">
+              <img src="/assets/testimonial-01.jpg" alt="Luisltattoo, Den Haag" class="sec-slide-img">
+            </div>
+            <div class="sec-slide sec-slide--locked" data-index="1">
+              <img src="/assets/testimonial-03.jpg" alt="" class="sec-slide-img">
+            </div>
+            <div class="sec-slide sec-slide--locked" data-index="2">
+              <img src="/assets/testimonial-06.jpg" alt="" class="sec-slide-img">
+            </div>
+            <div class="sec-slide-caption">
+              <span class="sec-slide-label">Luisltattoo â€” Den Haag</span>
+            </div>
+            <div class="sec-slide-dots" aria-hidden="true">
+              <span class="sec-dot sec-dot--active"></span>
+              <span class="sec-dot"></span>
+              <span class="sec-dot"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• FAQ â•â•â•â•â•â•â•â•â•â•â• -->
+    <section class="faq" id="faq" aria-label="Frequently asked questions">
+      <div class="faq-inner">
+        <div class="faq-header">
+          <p class="faq-eyebrow reveal" data-i18n="index.faq.eyebrow">FAQ</p>
+          <h2 class="faq-title reveal reveal-d1" data-i18n="index.faq.title">GOT QUESTIONS?</h2>
+          <p class="faq-subtitle reveal reveal-d2" data-i18n="index.faq.sub">Everything you need to know about getting started with inkLedger.</p>
+        </div>
+
+        <div class="faq-list reveal reveal-d3">
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-num">01</span>
+              <span class="faq-q" data-i18n="index.faq.q1">Is inkLedger free to use?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </button>
+            <div class="faq-body"><div class="faq-body-inner">
+              <p class="faq-a" data-i18n="index.faq.a1">inkLedger is FREE for artists getting started. Premium features like advanced bookkeeping, tax exports, and more are available on paid plans.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-num">02</span>
+              <span class="faq-q" data-i18n="index.faq.q2">Can my clients book directly through inkLedger?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </button>
+            <div class="faq-body"><div class="faq-body-inner">
+              <p class="faq-a" data-i18n="index.faq.a2">Yes! You get a personalized booking page where clients can browse your portfolio, select a session type, upload reference images, and pay a deposit â€” all in one flow. Share the link on your Instagram, website, or anywhere.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-num">03</span>
+              <span class="faq-q" data-i18n="index.faq.q3">How does the bookkeeping work for ZZP artists?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </button>
+            <div class="faq-body"><div class="faq-body-inner">
+              <p class="faq-a" data-i18n="index.faq.a3">inkLedger automatically tracks your income and expenses, categorizes transactions, and generates quarterly overviews ready for the Belastingdienst. Export to CSV or PDF anytime. It's built specifically for Dutch freelance regulations.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-num">04</span>
+              <span class="faq-q" data-i18n="index.faq.q4">Is my data safe and GDPR-compliant?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </button>
+            <div class="faq-body"><div class="faq-body-inner">
+              <p class="faq-a" data-i18n="index.faq.a4">Absolutely. We use end-to-end encryption, EU-based servers, and built-in consent management. Your client data and financial records are stored securely and in full compliance with GDPR.</p>
+            </div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span class="faq-num">05</span>
+              <span class="faq-q" data-i18n="index.faq.q5">When will inkLedger launch?</span>
+              <span class="faq-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </button>
+            <div class="faq-body"><div class="faq-body-inner">
+              <p class="faq-a" data-i18n="index.faq.a5">We're currently in closed beta with a select group of artists. Join the waitlist to get early access and help shape the features that matter most to your workflow.</p>
+            </div></div>
+          </div>
+
+        </div><!-- /faq-list -->
+
+        <p class="faq-quote reveal" data-i18n="index.faq.quote">"Built by people who actually understand the hustle."</p>
+      </div>
+    </section>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• FINAL CTA â•â•â•â•â•â•â•â•â•â•â• -->
+    <section class="final-cta" id="cta" aria-label="Call to action">
+      <div class="star star-1"></div>
+      <div class="star star-2"></div>
+      <div class="star star-3"></div>
+      <div class="star star-4"></div>
+
+      <h2 class="final-cta-title reveal" data-i18n="index.cta.title">READY TO KILL<br>THE CHAOS?</h2>
+      <div class="reveal reveal-d1">
+        <a href="#heroFormContainer" class="btn-accent" id="ctaBtn" data-i18n="index.cta.btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+          Get inkLedger for Free
+        </a>
+      </div>
+      <p style="margin-top:16px;font-size:14px;color:var(--gray);opacity:0.7;" class="reveal reveal-d2" data-i18n="index.cta.sub">Join tattoo artists who refuse spreadsheet hell. Get early access to inkLedger.</p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <div class="footer-logo-icon"><img src="/icon.png" alt="inkLedger"></div>
+        </div>
+        <ul class="footer-links-list">
+          <li><a href="#" data-i18n="index.footer.home">Home</a></li>
+          <li><a href="#features" data-i18n="index.footer.features">Features</a></li>
+          <li><a href="#how" data-i18n="index.footer.how">How It Works</a></li>
+          <li><a href="mailto:support@inkledger.app">Support</a></li>
+          <li><a href="/privacy.html">Privacy</a> &amp; <a href="/terms.html">Terms</a></li>
+        </ul>
+      </div>
+      <div class="footer-right">
+        <!-- SOCIAL ICONS â€” commented out, activate when ready
+        <div class="footer-social-label">Stay in touch</div>
+        <div class="footer-social">
+          <a href="https://instagram.com/inkledger" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+        -->
+        <div class="footer-newsletter" id="footerFormContainer">
+          <input type="email" id="footerEmail" placeholder="name@email.com" autocomplete="email">
+          <button type="button" id="footerSubmit">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // Loader
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').classList.add('done');
+      }, 500);
+    });
+
+    // Nav toggle (mobile)
+    var navToggle = document.getElementById('navToggle');
+    var navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', function() {
+      var isOpen = navLinks.classList.toggle('open');
+      this.classList.toggle('open');
+      this.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Scroll reveal with IntersectionObserver
+    var revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function(el) { observer.observe(el); });
+    } else {
+      revealEls.forEach(function(el) { el.classList.add('visible'); });
+    }
+
+    function getHeroEmailInput() {
+      return document.getElementById('heroEmail');
+    }
+
+    function focusHeroEmailInput() {
+      var heroEmailInput = getHeroEmailInput();
+      if (!heroEmailInput) return;
+      try {
+        heroEmailInput.focus({ preventScroll: true });
+      } catch (e) {
+        heroEmailInput.focus();
+      }
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        var target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          if (href === '#heroFormContainer') {
+            var heroEmailInput = getHeroEmailInput();
+            if (heroEmailInput) {
+              heroEmailInput.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+              setTimeout(focusHeroEmailInput, 520);
+              return;
+            }
+          }
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Waitlist form handling (hero only)
+    function showWaitlistSuccess(container) {
+      var message = (window.t && window.t('index.waitlist.success')) || "You're on the list! We'll be in touch soon.";
+      container.innerHTML =
+        '<div class="hero-form-success">' +
+          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
+          '<span>' + message + '</span>' +
+        '</div>';
+    }
+
+    function showWaitlistError(container) {
+      var message = (window.t && window.t('index.waitlist.error')) || "Something went wrong. Please try again.";
+      container.innerHTML =
+        '<div class="hero-form-success" style="border-color: rgba(220,38,38,0.25); color: #dc2626; background: rgba(220,38,38,0.08);">' +
+          '<span>' + message + '</span>' +
+        '</div>';
+    }
+
+    function submitWaitlist(email, source, honeypot) {
+      return fetch('https://api.inkledger.app/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: source, hp: honeypot })
+      }).then(function(res) {
+        return res.json().catch(function() { return {}; }).then(function(data) {
+          if (!res.ok || !data.ok) {
+            throw new Error(data.error || 'Request failed');
+          }
+          return data;
+        });
+      });
+    }
+
+    function handleWaitlistSubmit(formId, emailId, containerId, source, hpId) {
+      var form = document.getElementById(formId);
+      var emailInput = document.getElementById(emailId);
+      var hpInput = document.getElementById(hpId);
+      var container = document.getElementById(containerId);
+      if (!form) return;
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = emailInput.value.trim();
+        var honeypot = hpInput ? hpInput.value.trim() : '';
+        if (honeypot) {
+          showWaitlistSuccess(container);
+          return;
+        }
+        if (!email) return;
+        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!re.test(email)) return;
+
+        submitWaitlist(email, source, honeypot)
+          .then(function() { showWaitlistSuccess(container); })
+          .catch(function() { showWaitlistError(container); });
+      });
+    }
+
+    handleWaitlistSubmit('heroForm', 'heroEmail', 'heroFormContainer', 'hero', 'heroHp');
+
+    // Footer newsletter â€” calls same API with source='footer'
+    (function() {
+      var btn       = document.getElementById('footerSubmit');
+      var input     = document.getElementById('footerEmail');
+      var container = document.getElementById('footerFormContainer');
+      if (!btn || !input || !container) return;
+      var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function submit() {
+        var email = input.value.trim();
+        if (!email || !re.test(email)) { input.focus(); return; }
+        btn.disabled = true;
+        submitWaitlist(email, 'footer', '')
+          .then(function()  { showWaitlistSuccess(container); })
+          .catch(function() { showWaitlistError(container);   });
+      }
+
+      btn.addEventListener('click', submit);
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') submit();
+      });
+    })();
+
+    // Floating cards: scroll direction controls center/spread state
+    var heroSection = document.querySelector('.hero');
+    var floatCards = document.querySelector('.float-cards');
+    var reduceMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    var prefersReducedMotion = !!(reduceMotionQuery && reduceMotionQuery.matches);
+
+    if (heroSection && floatCards && !prefersReducedMotion) {
+      var heroInView = false;
+      var hasHeroObserver = false;
+      var currentState = 'center';
+      var lastScrollY = window.scrollY || window.pageYOffset || 0;
+      var ticking = false;
+      var directionThreshold = 4;
+
+      function isInViewport(el) {
+        var rect = el.getBoundingClientRect();
+        return rect.bottom > 0 && rect.top < window.innerHeight;
+      }
+
+      function applyFloatState(nextState) {
+        if (nextState === currentState) return;
+        currentState = nextState;
+        floatCards.classList.toggle('is-center', nextState === 'center');
+        floatCards.classList.toggle('is-spread', nextState === 'spread');
+      }
+
+      heroInView = isInViewport(heroSection);
+
+      if ('IntersectionObserver' in window) {
+        hasHeroObserver = true;
+        var heroObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.target === heroSection) {
+              heroInView = entry.isIntersecting;
+            }
+          });
+        }, { threshold: 0.2 });
+        heroObserver.observe(heroSection);
+      }
+
+      function handleScrollDirection() {
+        ticking = false;
+        var currentY = window.scrollY || window.pageYOffset || 0;
+        var deltaY = currentY - lastScrollY;
+        if (!hasHeroObserver) {
+          heroInView = isInViewport(heroSection);
+        }
+        if (heroInView && Math.abs(deltaY) >= directionThreshold) {
+          applyFloatState(deltaY > 0 ? 'spread' : 'center');
+        }
+        lastScrollY = currentY;
+      }
+
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          ticking = true;
+          window.requestAnimationFrame(handleScrollDirection);
+        }
+      }, { passive: true });
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.closest('.faq-item');
+        var isOpen = item.classList.contains('faq-open');
+        document.querySelectorAll('.faq-item').forEach(function(i) {
+          i.classList.remove('faq-open');
+          i.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('faq-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // â”€â”€ Community slideshow â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    (function() {
+      var slides = document.querySelectorAll('.sec-slide');
+      var dots   = document.querySelectorAll('.sec-dot');
+      var cards  = document.querySelectorAll('.sec-feature[data-slide]');
+      var label  = document.querySelector('.sec-slide-label');
+      if (!slides.length || !label) return;
+
+      var studioNames = [
+        'Luisltattoo \u2014 Den Haag',
+        'Revealed soon \u2014 Amsterdam',
+        'Revealed soon \u2014 Utrecht'
+      ];
+      var current = 0;
+      var timer = null, resumeTimer = null;
+      var reduceMotion = window.matchMedia
+        ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+
+      function goTo(i) {
+        slides[current].classList.remove('sec-slide--active');
+        dots[current].classList.remove('sec-dot--active');
+        cards[current].classList.remove('is-active');
+        cards[current].setAttribute('aria-pressed','false');
+        current = i;
+        slides[current].classList.add('sec-slide--active');
+        dots[current].classList.add('sec-dot--active');
+        cards[current].classList.add('is-active');
+        cards[current].setAttribute('aria-pressed','true');
+        label.textContent = studioNames[current];
+      }
+
+      function startAutoPlay() {
+        if (reduceMotion) return;
+        clearInterval(timer);
+        timer = setInterval(function(){ goTo((current + 1) % slides.length); }, 4000);
+      }
+
+      function pauseAndResume() {
+        clearInterval(timer);
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(startAutoPlay, 3000);
+      }
+
+      cards[0].classList.add('is-active');
+      cards[0].setAttribute('aria-pressed','true');
+
+      cards.forEach(function(card) {
+        var idx = parseInt(card.getAttribute('data-slide'), 10);
+        card.addEventListener('mouseenter', function(){ goTo(idx); pauseAndResume(); });
+        card.addEventListener('click',      function(){ goTo(idx); pauseAndResume(); });
+        card.addEventListener('keydown',    function(e){
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(idx); pauseAndResume(); }
+        });
+      });
+
+      startAutoPlay();
+    })();
+
+  })();
+  </script>
+
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -1532,751 +2019,6 @@
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "iOS, Android, Web"
   }
-  </script>
-</head>
-<body data-i18n-page="index">
-  <a href="#main" class="skip-link" data-i18n="index.skip">Skip to main content</a>
-
-  <!-- ========== NAVIGATION ========== -->
-  <nav class="nav" role="navigation" aria-label="Main navigation" data-i18n="index.nav.aria" data-i18n-attr="aria-label">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo" aria-label="inkLedger home" data-i18n="index.nav.home_aria" data-i18n-attr="aria-label">
-        <span class="nav-logo-icon">
-          <img src="/icon.png" alt="inkLedger logo" data-i18n="index.nav.logo_alt" data-i18n-attr="alt">
-        </span>
-        inkLedger
-      </a>
-
-      <div class="nav-links" id="navLinks">
-        <a href="#how-it-works" class="nav-link" data-i18n="index.nav.how">How it works</a>
-        <a href="#features" class="nav-link" data-i18n="index.nav.features">Features</a>
-        <a href="#faq" class="nav-link" data-i18n="index.nav.faq">FAQ</a>
-
-        <div class="nav-actions">
-          <button class="btn-ghost-nav" onclick="document.getElementById('heroEmail').focus()" data-i18n="index.nav.sign_in">See demo</button>
-          <button class="btn-primary-nav" onclick="document.getElementById('heroEmail').focus()" data-i18n="index.nav.join_waitlist">Kill the chaos</button>
-        </div>
-      </div>
-
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" data-i18n="index.nav.toggle" data-i18n-attr="aria-label">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <main id="main" role="main">
-    <!-- ========== HERO ========== -->
-    <section class="hero" aria-label="Hero" data-i18n="index.hero.aria" data-i18n-attr="aria-label">
-      <div class="hero-bg"></div>
-      <div class="hero-corner hero-corner--tl"></div>
-      <div class="hero-corner hero-corner--tr"></div>
-      <div class="hero-corner hero-corner--bl"></div>
-      <div class="hero-corner hero-corner--br"></div>
-
-      <div class="hero-content">
-        <div class="hero-text">
-          <div class="hero-badge hero-reveal hero-reveal-1">
-            <span class="hero-badge-dot"></span>
-            <span data-i18n="index.hero.badge">For artists. Not accountants.</span>
-          </div>
-
-          <h1 class="hero-headline hero-reveal hero-reveal-2">
-            <span class="hero-headline-row" data-i18n="index.hero.headline_row1">YOUR DMs ARE</span>
-            <span class="hero-headline-row"><span class="hero-headline-accent" data-i18n="index.hero.headline_row2">NOT A BOOKING SYSTEM.</span></span>
-          </h1>
-
-          <p class="hero-sub hero-reveal hero-reveal-3" data-i18n="index.hero.sub">
-            Bookings, deposits, consent forms, expenses, and invoices — in one clean system. Get paid. Stay documented. Stay tax-ready.
-          </p>
-
-          <div id="heroFormContainer">
-            <form class="hero-form hero-reveal hero-reveal-4" id="heroForm">
-              <input
-                type="email"
-                class="hero-input"
-                id="heroEmail"
-                placeholder="Where do we send the receipts?"
-                data-i18n="index.hero.email_placeholder"
-                data-i18n-attr="placeholder"
-                autocomplete="email"
-                required
-              >
-              <div class="honeypot" aria-hidden="true">
-                <label for="heroHp" data-i18n="index.hero.honeypot">Leave this field blank</label>
-                <input type="text" id="heroHp" name="hp_field" tabindex="-1" autocomplete="off">
-              </div>
-              <button type="submit" class="btn-primary" id="heroSubmit" data-i18n="index.hero.submit">
-                Kill the chaos
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
-              </button>
-            </form>
-            <p class="hero-privacy hero-reveal hero-reveal-5" data-i18n="index.hero.privacy">No card. No chaos. Unsubscribe anytime.</p>
-          </div>
-        </div>
-
-        <!-- Phone Mockup with floating badges -->
-        <div class="hero-visual phone-entrance">
-          <!-- Dot grids -->
-          <div class="hero-dot-grid hero-dot-grid--left">
-            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g opacity="0.15">
-                <pattern id="dots-l" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
-                  <text x="4" y="12" font-size="10" fill="#cc3300">+</text>
-                </pattern>
-                <rect width="200" height="200" fill="url(#dots-l)"/>
-              </g>
-            </svg>
-          </div>
-          <div class="hero-dot-grid hero-dot-grid--right">
-            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g opacity="0.1">
-                <pattern id="dots-r" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-                  <circle cx="2" cy="2" r="1.5" fill="#cc3300"/>
-                </pattern>
-                <rect width="200" height="200" fill="url(#dots-r)"/>
-              </g>
-            </svg>
-          </div>
-
-          <!-- Floating info badges -->
-          <div class="floating-badge floating-badge--tl badge-entrance badge-entrance-1">
-            <span class="floating-badge-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            </span>
-            <span data-i18n="index.hero.badge_booking">Booking Confirmed</span>
-          </div>
-          <div class="floating-badge floating-badge--tr badge-entrance badge-entrance-2">
-            <span class="floating-badge-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#cc3300" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </span>
-            <span data-i18n="index.hero.badge_month">€2,340 This Month</span>
-          </div>
-          <div class="floating-badge floating-badge--bl badge-entrance badge-entrance-3">
-            <span class="floating-badge-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            </span>
-            <span data-i18n="index.hero.badge_export">Tax-Ready Export</span>
-          </div>
-
-          <!-- Phone -->
-          <div class="phone-mockup">
-            <div class="phone-screen">
-              <div class="phone-dynamic-island"></div>
-              <img class="phone-screen-img" src="/IMG_3083-2.jpg" alt="inkledger app dashboard" data-i18n="index.hero.phone_alt" data-i18n-attr="alt" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== TRUSTED BY ========== -->
-    <section class="trust-section" aria-label="Trusted by artists" data-i18n="index.trust.aria" data-i18n-attr="aria-label">
-      <div class="container">
-        <h2 class="trust-headline reveal" data-i18n="index.trust.title">BUILT FOR SERIOUS TATTOO ARTISTS</h2>
-        <p class="trust-sub reveal reveal-delay-1" data-i18n="index.trust.sub">Join the anti-chaos crew</p>
-        <div class="trust-carousel reveal reveal-delay-2">
-          <div class="trust-carousel-mask">
-            <div class="trust-carousel-track">
-              <div class="trust-carousel-group">
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-01.jpg" alt="Tattoo testimonial 1" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card1">No more deposit confusion. Every booking is crystal clear.</p>
-                </article>
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-02.jpg" alt="Tattoo testimonial 2" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card2">Clients show up prepared. All references in one thread.</p>
-                </article>
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-03.jpg" alt="Tattoo testimonial 3" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card3">Payments, notes, and follow-ups stay perfectly organized.</p>
-                </article>
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-04.jpg" alt="Tattoo testimonial 4" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card4">I finally stopped juggling DMs, screenshots, and spreadsheets.</p>
-                </article>
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-05.jpg" alt="Tattoo testimonial 5" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card5">Tax season feels calm when everything is already tracked.</p>
-                </article>
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-06.jpg" alt="Tattoo testimonial 6" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card6">Clean workflow, better sessions, more time to create.</p>
-                </article>
-              </div>
-              <div class="trust-carousel-group" aria-hidden="true">
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-01.jpg" alt="" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card1">No more deposit confusion. Every booking is crystal clear.</p>
-                </article>
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-02.jpg" alt="" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card2">Clients show up prepared. All references in one thread.</p>
-                </article>
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-03.jpg" alt="" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card3">Payments, notes, and follow-ups stay perfectly organized.</p>
-                </article>
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-04.jpg" alt="" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card4">I finally stopped juggling DMs, screenshots, and spreadsheets.</p>
-                </article>
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-05.jpg" alt="" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card5">Tax season feels calm when everything is already tracked.</p>
-                </article>
-                <article class="trust-card">
-                  <div class="trust-card-media"><img src="assets/testimonial-06.jpg" alt="" loading="lazy" decoding="async" /></div>
-                  <p class="trust-card-copy" data-i18n="index.trust.card6">Clean workflow, better sessions, more time to create.</p>
-                </article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== STORY ========== -->
-    <section class="story-section" aria-label="Our story" data-i18n="index.story.aria" data-i18n-attr="aria-label">
-      <div class="container">
-        <div class="story-card reveal">
-          <div class="story-emoji">🖤</div>
-          <p class="story-text" data-i18n="index.story.text">
-            We built inkLedger because your time is worth more than admin. You didn’t become an artist to chase deposits, hunt messages, and panic at tax time. Keep it clean. Keep it documented.
-          </p>
-          <p class="story-author" data-i18n="index.story.author">Made in NL. Built to stay clean.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== HOW IT WORKS ========== -->
-    <section class="how-section" id="how-it-works" aria-label="How it works" data-i18n="index.how.aria" data-i18n-attr="aria-label">
-      <div class="container">
-        <p class="section-eyebrow reveal" data-i18n="index.how.eyebrow">How it works</p>
-        <h2 class="section-title reveal reveal-delay-1" data-i18n="index.how.title">CHAOS → CONTROL</h2>
-        <p class="section-subtitle reveal reveal-delay-2" data-i18n="index.how.sub">
-          From inquiry to invoice to export. Everything in one place. Nothing gets lost.
-        </p>
-
-        <div class="steps-grid">
-          <div class="step-card reveal reveal-delay-1">
-            <span class="step-number">01</span>
-            <div class="step-icon" style="background: rgba(204, 51, 0, 0.1);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#cc3300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <h3 class="step-title" data-i18n="index.how.step1.title">SMART BOOKING</h3>
-            <p class="step-desc" data-i18n="index.how.step1.desc">Clients book directly through your personalized page. Upload design references, pick a slot, pay a deposit — all automatic.</p>
-          </div>
-
-          <div class="step-card reveal reveal-delay-2">
-            <span class="step-number">02</span>
-            <div class="step-icon" style="background: rgba(6,182,212,0.12);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-            </div>
-            <h3 class="step-title" data-i18n="index.how.step2.title">DEPOSITS & PAYMENTS</h3>
-            <p class="step-desc" data-i18n="index.how.step2.desc">Collect deposits upfront, track payments, and manage balances. No more chasing invoices or losing track of who paid what.</p>
-          </div>
-
-          <div class="step-card reveal reveal-delay-3">
-            <span class="step-number">03</span>
-            <div class="step-icon" style="background: rgba(245,158,11,0.12);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            </div>
-            <h3 class="step-title" data-i18n="index.how.step3.title">REMINDERS & FOLLOW-UPS</h3>
-            <p class="step-desc" data-i18n="index.how.step3.desc">Automatic reminders for upcoming sessions, aftercare instructions, and follow-up bookings. Your clients stay in the loop.</p>
-          </div>
-
-          <div class="step-card reveal reveal-delay-4">
-            <span class="step-number">04</span>
-            <div class="step-icon" style="background: rgba(236,72,153,0.12);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            </div>
-            <h3 class="step-title" data-i18n="index.how.step4.title">DESIGN UPLOADS</h3>
-            <p class="step-desc" data-i18n="index.how.step4.desc">Upload your portfolio and custom designs. Clients attach references directly when booking — everything in one thread.</p>
-          </div>
-
-          <div class="step-card reveal reveal-delay-5">
-            <span class="step-number">05</span>
-            <div class="step-icon" style="background: rgba(16,185,129,0.12);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <h3 class="step-title" data-i18n="index.how.step5.title">INVOICING</h3>
-            <p class="step-desc" data-i18n="index.how.step5.desc">Professional ZZP-compliant invoices generated automatically. Send, track, and export — ready for your accountant or the Belastingdienst.</p>
-          </div>
-
-          <div class="step-card reveal reveal-delay-6">
-            <span class="step-number">06</span>
-            <div class="step-icon" style="background: rgba(204, 51, 0, 0.1);">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#cc3300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            </div>
-            <h3 class="step-title" data-i18n="index.how.step6.title">TAX-READY BOOKKEEPING</h3>
-            <p class="step-desc" data-i18n="index.how.step6.desc">Revenue tracking, expense logging, and quarterly overviews built for Dutch freelancers. Tax season? Already handled.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== FEATURES / AND MORE ========== -->
-    <section class="features-section" id="features" aria-label="Features" data-i18n="index.features.aria" data-i18n-attr="aria-label">
-      <div class="container">
-        <p class="section-eyebrow reveal" data-i18n="index.features.eyebrow">No fluff</p>
-        <h2 class="section-title reveal reveal-delay-1" data-i18n="index.features.title">BUILT TO STAY CLEAN</h2>
-        <p class="section-subtitle reveal reveal-delay-2" data-i18n="index.features.sub">
-          Every feature exists to kill chaos. Period.
-        </p>
-
-        <div class="features-grid">
-          <div class="feature-card reveal reveal-delay-1">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <h3 class="feature-title" data-i18n="index.features.item1.title">CLIENT MANAGEMENT</h3>
-            <p class="feature-desc" data-i18n="index.features.item1.desc">Full client profiles with history, preferences, allergies, reference images, and session notes — all in one place.</p>
-          </div>
-
-          <div class="feature-card reveal reveal-delay-2">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-            </div>
-            <h3 class="feature-title" data-i18n="index.features.item2.title">REVENUE INSIGHTS</h3>
-            <p class="feature-desc" data-i18n="index.features.item2.desc">See your earnings in real-time. Monthly breakdowns, trends, and projections so you always know where your business stands.</p>
-          </div>
-
-          <div class="feature-card reveal reveal-delay-3">
-            <div class="feature-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3 class="feature-title" data-i18n="index.features.item3.title">GDPR-PROOF</h3>
-            <p class="feature-desc" data-i18n="index.features.item3.desc">Built-in consent flows, secure data handling, and privacy-first design. Compliant with EU regulations out of the box.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== IMPROVING ========== -->
-    <section class="improving-section" aria-label="Always improving" data-i18n="index.improving.aria" data-i18n-attr="aria-label">
-      <div class="container">
-        <div class="improving-card reveal">
-          <div class="improving-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-          </div>
-          <h2 class="improving-title" data-i18n="index.improving.title">WE KEEP IMPROVING</h2>
-          <p class="improving-text" data-i18n="index.improving.text">
-            inkLedger is constantly evolving. New features, integrations, and refinements ship regularly based on what real tattoo artists need. Your feedback shapes the product.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== FAQ ========== -->
-    <section class="faq-section" id="faq" aria-label="Frequently asked questions" data-i18n="index.faq.aria" data-i18n-attr="aria-label">
-      <div class="container">
-        <div class="faq-deco reveal">
-          <div class="faq-deco-line"></div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          <div class="faq-deco-line"></div>
-        </div>
-
-        <p class="section-eyebrow reveal" data-i18n="index.faq.eyebrow">FAQ</p>
-        <h2 class="section-title reveal reveal-delay-1" data-i18n="index.faq.title">GOT QUESTIONS?</h2>
-        <p class="section-subtitle reveal reveal-delay-2" data-i18n="index.faq.sub">
-          Everything you need to know about getting started with inkLedger.
-        </p>
-
-        <div class="faq-container">
-          <div class="faq-item reveal reveal-delay-1">
-            <button class="faq-question" aria-expanded="false">
-              <span data-i18n="index.faq.q1">Is inkLedger free to use?</span>
-              <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-            </button>
-            <div class="faq-answer" data-i18n="index.faq.a1">We offer a generous free tier for solo artists getting started. Premium features like advanced bookkeeping, tax exports, and multi-session management are available on paid plans. Join the waitlist to be first in line for early-bird pricing.</div>
-          </div>
-
-          <div class="faq-item reveal reveal-delay-2">
-            <button class="faq-question" aria-expanded="false">
-              <span data-i18n="index.faq.q2">Can my clients book directly through inkLedger?</span>
-              <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-            </button>
-            <div class="faq-answer" data-i18n="index.faq.a2">Yes! You get a personalized booking page where clients can browse your portfolio, select a session type, upload reference images, and pay a deposit — all in one flow. Share the link on your Instagram, website, or anywhere.</div>
-          </div>
-
-          <div class="faq-item reveal reveal-delay-3">
-            <button class="faq-question" aria-expanded="false">
-              <span data-i18n="index.faq.q3">How does the bookkeeping work for ZZP artists?</span>
-              <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-            </button>
-            <div class="faq-answer" data-i18n="index.faq.a3">inkLedger automatically tracks your income and expenses, categorizes transactions, and generates quarterly overviews ready for the Belastingdienst. Export to CSV or PDF anytime. It's built specifically for Dutch freelance regulations.</div>
-          </div>
-
-          <div class="faq-item reveal reveal-delay-4">
-            <button class="faq-question" aria-expanded="false">
-              <span data-i18n="index.faq.q4">Is my data safe and GDPR-compliant?</span>
-              <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-            </button>
-            <div class="faq-answer" data-i18n="index.faq.a4">Absolutely. We use end-to-end encryption, EU-based servers, and built-in consent management. Your client data and financial records are stored securely and in full compliance with GDPR.</div>
-          </div>
-
-          <div class="faq-item reveal reveal-delay-5">
-            <button class="faq-question" aria-expanded="false">
-              <span data-i18n="index.faq.q5">When will inkLedger launch?</span>
-              <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-            </button>
-            <div class="faq-answer" data-i18n="index.faq.a5">We're currently in closed beta with a select group of artists. Join the waitlist to get early access and help shape the features that matter most to your workflow.</div>
-          </div>
-        </div>
-
-        <p class="faq-quote reveal" data-i18n="index.faq.quote">"Built by people who actually understand the hustle."</p>
-      </div>
-    </section>
-
-    <!-- ========== CTA ========== -->
-    <section class="cta-section" aria-label="Call to action" data-i18n="index.cta.aria" data-i18n-attr="aria-label">
-      <div class="container">
-        <h2 class="cta-title reveal" data-i18n="index.cta.title" data-i18n-html>READY TO SIMPLIFY<br>YOUR STUDIO?</h2>
-        <p class="cta-sub reveal reveal-delay-1" data-i18n="index.cta.sub">
-          Join hundreds of tattoo artists who are tired of spreadsheets. Get early access to inkLedger.
-        </p>
-        <div id="ctaFormContainer">
-          <form class="cta-form reveal reveal-delay-2" id="ctaForm">
-            <input type="email" class="hero-input" id="ctaEmail" placeholder="Where do we send the receipts?" autocomplete="email" required data-i18n="index.cta.email_placeholder" data-i18n-attr="placeholder">
-            <div class="honeypot" aria-hidden="true">
-              <label for="ctaHp" data-i18n="index.cta.honeypot">Leave this field blank</label>
-              <input type="text" id="ctaHp" name="hp_field" tabindex="-1" autocomplete="off">
-            </div>
-            <button type="submit" class="btn-primary" id="ctaSubmit" data-i18n="index.cta.submit">
-              Join
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="footer-logo">
-        <img src="/icon.png" alt="inkLedger logo" data-i18n="index.footer.logo_alt" data-i18n-attr="alt">
-        inkLedger
-      </div>
-      <div class="footer-links">
-        <a href="/privacy" class="footer-link" data-i18n="index.footer.privacy" data-localize-href="/privacy">Privacy Policy</a>
-        <span class="footer-divider">•</span>
-        <a href="/terms" class="footer-link" data-i18n="index.footer.terms" data-localize-href="/terms">Terms of Service</a>
-        <span class="footer-divider">•</span>
-        <a href="mailto:support@inkledger.app" class="footer-link" data-i18n="index.footer.support">Support</a>
-      </div>
-      <p class="footer-copy" data-i18n="index.footer.copy">© 2025 inkLedger. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- ========== COOKIE BANNER ========== -->
-  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie consent" data-i18n="index.cookie.aria" data-i18n-attr="aria-label">
-    <div class="cookie-banner-card">
-      <div>
-        <div class="cookie-banner-title" data-i18n="index.cookie.title">Cookies & Privacy</div>
-        <p class="cookie-banner-text">
-          <span data-i18n="index.cookie.text">We use cookies to keep inkLedger running smoothly and to understand how you use the site.</span>
-          <span data-i18n="index.cookie.read">Read our</span>
-          <a class="cookie-banner-link" href="/privacy" data-localize-href="/privacy" data-i18n="index.cookie.privacy">Privacy Policy</a>
-          <span data-i18n="index.cookie.and">and</span>
-          <a class="cookie-banner-link" href="/terms" data-localize-href="/terms" data-i18n="index.cookie.terms">Terms of Service</a>.
-        </p>
-      </div>
-      <div class="cookie-banner-actions">
-        <button class="btn-cookie" type="button" id="cookieDecline" data-i18n="index.cookie.decline">Decline</button>
-        <button class="btn-cookie" type="button" id="cookieCustomize" data-i18n="index.cookie.customize">Customize</button>
-        <button class="btn-cookie btn-cookie-primary" type="button" id="cookieAccept" data-i18n="index.cookie.accept">Accept all</button>
-      </div>
-    </div>
-    <div class="cookie-preferences" id="cookiePreferences" aria-hidden="true">
-      <div class="cookie-preferences-header">
-        <div class="cookie-banner-title" data-i18n="index.cookie.preferences_title">Cookie Preferences</div>
-        <button class="cookie-close" type="button" id="cookieClose" aria-label="Close" data-i18n="index.cookie.close" data-i18n-attr="aria-label">×</button>
-      </div>
-      <p class="cookie-banner-text" data-i18n="index.cookie.preferences_text">Choose which cookies you allow. You can change this anytime.</p>
-      <div class="cookie-preferences-list">
-        <div class="cookie-pref-item">
-          <div>
-            <div class="cookie-pref-title" data-i18n="index.cookie.necessary_title">Necessary</div>
-            <div class="cookie-pref-desc" data-i18n="index.cookie.necessary_desc">Required for the site to function.</div>
-          </div>
-          <div class="cookie-toggle" data-i18n="index.cookie.always_on">Always on</div>
-        </div>
-        <div class="cookie-pref-item">
-          <div>
-            <div class="cookie-pref-title" data-i18n="index.cookie.analytics_title">Analytics</div>
-            <div class="cookie-pref-desc" data-i18n="index.cookie.analytics_desc">Helps us improve the product.</div>
-          </div>
-          <label class="cookie-switch" for="cookieAnalytics">
-            <input type="checkbox" id="cookieAnalytics">
-            <span class="cookie-slider"></span>
-          </label>
-        </div>
-      </div>
-      <div class="cookie-banner-actions">
-        <button class="btn-cookie" type="button" id="cookieSave" data-i18n="index.cookie.save">Save preferences</button>
-        <button class="btn-cookie btn-cookie-primary" type="button" id="cookieAcceptAll" data-i18n="index.cookie.accept">Accept all</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== JAVASCRIPT ========== -->
-  <script src="/i18n.js"></script>
-  <script>
-    'use strict';
-    (function() {
-      // Nav scroll state
-      const nav = document.querySelector('.nav');
-      window.addEventListener('scroll', function() {
-        nav.classList.toggle('scrolled', window.scrollY > 50);
-      }, { passive: true });
-
-      // Mobile nav toggle
-      const navToggle = document.getElementById('navToggle');
-      const navLinks = document.getElementById('navLinks');
-      navToggle.addEventListener('click', function() {
-        const isOpen = navLinks.classList.toggle('open');
-        navToggle.classList.toggle('open', isOpen);
-        navToggle.setAttribute('aria-expanded', isOpen.toString());
-      });
-
-      // Close mobile nav on link click
-      navLinks.querySelectorAll('.nav-link').forEach(function(link) {
-        link.addEventListener('click', function() {
-          navLinks.classList.remove('open');
-          navToggle.classList.remove('open');
-          navToggle.setAttribute('aria-expanded', 'false');
-        });
-      });
-
-      // Smooth scroll
-      document.querySelectorAll('a[href^="#"]').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          var target = document.querySelector(link.getAttribute('href'));
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
-        });
-      });
-
-      // Scroll-triggered reveals
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.12 });
-
-      document.querySelectorAll('.reveal').forEach(function(el) {
-        observer.observe(el);
-      });
-
-      // FAQ accordion
-      document.querySelectorAll('.faq-question').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var item = btn.closest('.faq-item');
-          var isOpen = item.classList.contains('open');
-
-          // Close all
-          document.querySelectorAll('.faq-item').forEach(function(i) {
-            i.classList.remove('open');
-            i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-          });
-
-          // Open clicked (if was closed)
-          if (!isOpen) {
-            item.classList.add('open');
-            btn.setAttribute('aria-expanded', 'true');
-          }
-        });
-      });
-
-      // Waitlist form handling (both hero and CTA)
-      function showWaitlistSuccess(container) {
-        var message = (window.t && window.t('index.waitlist.success')) || "You're on the list! We'll be in touch soon.";
-        container.innerHTML =
-          '<div class="hero-form-success">' +
-            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
-            '<span>' + message + '</span>' +
-          '</div>';
-      }
-
-      function showWaitlistError(container) {
-        var message = (window.t && window.t('index.waitlist.error')) || "Something went wrong. Please try again.";
-        container.innerHTML =
-          '<div class="hero-form-success" style="border-color: rgba(220,38,38,0.2); color: #dc2626;">' +
-            '<span>' + message + '</span>' +
-          '</div>';
-      }
-
-      function submitWaitlist(email, source, honeypot) {
-        return fetch('https://api.inkledger.app/waitlist', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, source: source, hp: honeypot })
-        }).then(function(res) {
-          return res.json().catch(function() { return {}; }).then(function(data) {
-            if (!res.ok || !data.ok) {
-              throw new Error(data.error || 'Request failed');
-            }
-            return data;
-          });
-        });
-      }
-
-      function handleWaitlistSubmit(formId, emailId, containerId, source, hpId) {
-        var form = document.getElementById(formId);
-        var emailInput = document.getElementById(emailId);
-        var hpInput = document.getElementById(hpId);
-        var container = document.getElementById(containerId);
-
-        if (!form) return;
-
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          var email = emailInput.value.trim();
-          var honeypot = hpInput ? hpInput.value.trim() : '';
-          if (honeypot) {
-            showWaitlistSuccess(container);
-            return;
-          }
-          if (!email) return;
-          var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!re.test(email)) return;
-
-          submitWaitlist(email, source, honeypot)
-            .then(function() { showWaitlistSuccess(container); })
-            .catch(function() { showWaitlistError(container); });
-        });
-      }
-
-      handleWaitlistSubmit('heroForm', 'heroEmail', 'heroFormContainer', 'hero', 'heroHp');
-      handleWaitlistSubmit('ctaForm', 'ctaEmail', 'ctaFormContainer', 'cta', 'ctaHp');
-
-      // Cookie banner + consent
-      var cookieKey = 'inkledger_cookie_consent';
-      var banner = document.getElementById('cookieBanner');
-      var prefs = document.getElementById('cookiePreferences');
-      var acceptBtn = document.getElementById('cookieAccept');
-      var declineBtn = document.getElementById('cookieDecline');
-      var customizeBtn = document.getElementById('cookieCustomize');
-      var saveBtn = document.getElementById('cookieSave');
-      var acceptAllBtn = document.getElementById('cookieAcceptAll');
-      var closeBtn = document.getElementById('cookieClose');
-      var analyticsToggle = document.getElementById('cookieAnalytics');
-      var memoryConsent = null;
-
-      function readConsent() {
-        try {
-          var raw = localStorage.getItem(cookieKey);
-          if (!raw) return memoryConsent;
-          if (raw === 'accepted') return { analytics: true };
-          if (raw === 'declined') return { analytics: false };
-          return JSON.parse(raw);
-        } catch (e) {
-          return memoryConsent;
-        }
-      }
-
-      function writeConsent(consent) {
-        memoryConsent = consent;
-        try {
-          localStorage.setItem(cookieKey, JSON.stringify(consent));
-        } catch (e) {}
-      }
-
-      function normalizeConsent(consent) {
-        return {
-          necessary: true,
-          analytics: !!(consent && consent.analytics)
-        };
-      }
-
-      function showBanner() {
-        if (banner) banner.classList.add('is-visible');
-      }
-
-      function hideBanner() {
-        if (banner) banner.classList.remove('is-visible');
-      }
-
-      function openPrefs() {
-        if (!prefs) return;
-        prefs.classList.add('is-open');
-        prefs.setAttribute('aria-hidden', 'false');
-      }
-
-      function closePrefs() {
-        if (!prefs) return;
-        prefs.classList.remove('is-open');
-        prefs.setAttribute('aria-hidden', 'true');
-      }
-
-      function enableConsentScripts(type) {
-        var scripts = document.querySelectorAll('script[type="text/plain"][data-consent="' + type + '"]');
-        for (var i = 0; i < scripts.length; i++) {
-          var oldScript = scripts[i];
-          var newScript = document.createElement('script');
-          var srcAttr = oldScript.getAttribute('src');
-          if (srcAttr) newScript.src = srcAttr;
-          if (oldScript.async) newScript.async = true;
-          if (oldScript.defer) newScript.defer = true;
-          if (oldScript.noModule) newScript.noModule = true;
-          if (oldScript.crossOrigin) newScript.crossOrigin = oldScript.crossOrigin;
-          if (oldScript.referrerPolicy) newScript.referrerPolicy = oldScript.referrerPolicy;
-          if (oldScript.integrity) newScript.integrity = oldScript.integrity;
-          if (!srcAttr) newScript.text = oldScript.text || oldScript.textContent || '';
-          oldScript.parentNode.replaceChild(newScript, oldScript);
-        }
-      }
-
-      function updateAnalytics(consent) {
-        var analyticsState = consent.analytics ? 'granted' : 'denied';
-        document.documentElement.setAttribute('data-consent-analytics', analyticsState);
-        if (typeof window.CustomEvent === 'function') {
-          window.dispatchEvent(new CustomEvent('inkledger:consent', { detail: consent }));
-        }
-        if (typeof gtag === 'function') {
-          gtag('consent', 'update', { analytics_storage: analyticsState });
-        }
-        if (window.dataLayer && typeof window.dataLayer.push === 'function') {
-          window.dataLayer.push({ event: 'consent_update', analytics: consent.analytics });
-        }
-        if (consent.analytics) enableConsentScripts('analytics');
-      }
-
-      function applyConsent(consent) {
-        var normalized = normalizeConsent(consent);
-        writeConsent(normalized);
-        if (analyticsToggle) analyticsToggle.checked = normalized.analytics;
-        updateAnalytics(normalized);
-        closePrefs();
-        hideBanner();
-      }
-
-      if (banner) {
-        var stored = readConsent();
-        if (stored) {
-          var normalized = normalizeConsent(stored);
-          if (analyticsToggle) analyticsToggle.checked = normalized.analytics;
-          updateAnalytics(normalized);
-          hideBanner();
-        } else {
-          showBanner();
-        }
-      }
-
-      if (customizeBtn) customizeBtn.addEventListener('click', function() { openPrefs(); });
-      if (closeBtn) closeBtn.addEventListener('click', function() { closePrefs(); });
-      if (acceptBtn) acceptBtn.addEventListener('click', function() { applyConsent({ analytics: true }); });
-      if (acceptAllBtn) acceptAllBtn.addEventListener('click', function() { applyConsent({ analytics: true }); });
-      if (declineBtn) declineBtn.addEventListener('click', function() { applyConsent({ analytics: false }); });
-      if (saveBtn) saveBtn.addEventListener('click', function() {
-        var analytics = analyticsToggle ? analyticsToggle.checked : false;
-        applyConsent({ analytics: analytics });
-      });
-    })();
   </script>
 </body>
 </html>
