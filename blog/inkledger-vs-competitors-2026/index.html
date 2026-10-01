@@ -725,7 +725,7 @@
 
 <h3>Where It Falls Short vs inkLedger</h3>
 <p>
-  The 10% client-facing fee on the free tier is steep. inkLedger charges an 8% client fee on deposits &mdash; lower, and the artist pays nothing. Venue's paid tiers ($50-$150/month) still charge 5% on top of the subscription. With inkLedger, there is no subscription at all. Free for artists, period.
+  The 10% client-facing fee on the free tier is steep. inkLedger charges an 8% client fee on deposits and remaining balances, with a &euro;4 minimum and an &euro;8 maximum per payment, and the artist pays nothing. On payments over &euro;40 that is lower than Venue's 10%, and the &euro;8 cap keeps it low on big sessions. On small deposits the &euro;4 minimum works out to more than 8% (and on deposits under &euro;40, more than Venue's 10%). Venue's paid tiers ($50-$150/month) still charge 5% on top of the subscription. With inkLedger, there is no subscription at all. Free for artists, period.
 </p>
 <p>
   There is no built-in bookkeeping or tax tools. No VAT/BTW splitting. No design approval workflow with magic links. No GDPR-compliant EU data hosting. And no deposit + remaining balance flow through Stripe Checkout.
@@ -739,7 +739,7 @@
   </tr>
   <tr>
     <td>Transaction Fee (Free Tier)</td>
-    <td>8% client fee on deposit</td>
+    <td>8% client fee per payment (min &euro;4, max &euro;8)</td>
     <td>10% to client</td>
   </tr>
   <tr>
@@ -1558,7 +1558,7 @@
 
 <h3>Payments That Make Sense</h3>
 <p>
-  Stripe Checkout for deposits. Stripe Checkout for remaining balances. Payment links for custom amounts. Stripe Connect for artist payouts. inkLedger is free for artists &mdash; clients pay an 8% platform fee on deposits. No monthly subscription. No surprise invoices. You focus on the craft, the platform pays for itself.
+  Stripe Checkout for deposits. Stripe Checkout for remaining balances. Payment links for custom amounts. Stripe Connect for artist payouts. inkLedger is free for artists &mdash; clients pay an 8% platform fee on deposits and remaining balances (minimum &euro;4, maximum &euro;8 per payment). No monthly subscription. No surprise invoices. You focus on the craft, the platform pays for itself.
 </p>
 
 
